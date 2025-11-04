@@ -2,51 +2,53 @@ const moveGroups = [
     {
         name: "Basics",
         moves: [
-            { name: "Basic", semi: false, date: null },
-            { name: "Cord Beat Crossover", semi: false, date: null },
-            { name: "Four Corners", semi: false, date: null },
-            { name: "Front Double Basic", semi: false, date: null },
-            { name: "Hook Step", semi: true, date: null },
-            { name: "Hot Toe", semi: true, date: null },
-            { name: "Semi Circle", semi: false, date: null },
-            { name: "Side Basic", semi: true, date: null },
-            { name: "Side Basic Plus", semi: false, date: null },
-            { name: "Suzy Q", semi: true, date: null },
+            { name: "Basic", semi: false, date: '2025-10-01T12:00:00' },
+            { name: "Cord Beat Crossover", semi: false, date: '2025-10-29T12:00:00' },
+            { name: "Four Corners", semi: false, date: '2025-10-22T12:00:00' },
+            { name: "Front Double Basic", semi: false, date: '2025-10-01T12:00:00' },
+            { name: "Hook Step", semi: true, date: '2025-10-04T12:00:00' },
+            { name: "Hot Toe", semi: true, date: '2025-10-04T12:00:00' },
+            { name: "Semi Circle", semi: false, date: '2025-10-15T12:00:00' },
+            { name: "Side Basic", semi: true, date: '2025-10-01T12:00:00' },
+            { name: "Side Basic Plus", semi: false, date: '2025-10-22T12:00:00' },
+            { name: "Suzy Q", semi: true, date: '2025-10-04T12:00:00' },
+            { name: "Switch Timing", semi: false, date: '2025-10-18T12:00:00' },
         ]
     },
     {
         name: "Basic Combos",
         moves: [
-            { name: "Hot Toe Suzy", semi: false, date: null },
-            { name: "Suzy Cross Suzy", semi: false, date: null },
-            { name: "Suzy Q Hook Combo", semi: true, date: null },
-            { name: "Suzy With A Turn", semi: true, date: null },
+            { name: "Hot Toe Suzy", semi: false, date: '2025-10-08T12:00:00' },
+            { name: "Suzy Cross Suzy", semi: false, date: '2025-10-11T12:00:00' },
+            { name: "Suzy Cross Suzy With A Turn", semi: false, date: '2025-10-25T12:00:00' },
+            { name: "Suzy Q Hook Combo", semi: true, date: '2025-10-08T12:00:00' },
         ]
     },
     {
         name: "Advanced",
         moves: [
-            { name: "Downtown", semi: true, date: null },
-            { name: "Downtown with a Turn", semi: false, date: null },
-            { name: "Four Tap V", semi: false, date: null },
-            { name: "Inverted Suzy Plus", semi: false, date: null },
-            { name: "Left Front Double Cross", semi: false, date: null },
-            { name: "Suzy Q Plus", semi: true, date: null },
+            { name: "Downtown", semi: true, date: '2025-10-11T12:00:00' },
+            { name: "Downtown with a Turn", semi: false, date: '2025-10-25T12:00:00' },
+            { name: "Four Tap V", semi: false, date: '2025-10-29T12:00:00' },
+            { name: "Inverted Suzy Plus", semi: false, date: '2025-10-25T12:00:00' },
+            { name: "Left Front Double Cross", semi: false, date: '2025-11-01T12:00:00' },
+            { name: "Right Front Double Cross", semi: false, date: '2025-11-01T12:00:00' },
+            { name: "Suzy Q Plus", semi: true, date: '2025-10-11T12:00:00' },
         ]
     },
     {
         name: "Advanced Combos",
         moves: [
-            { name: "Cord Beat Suzy", semi: false, date: null },
-            { name: "Double Four Tap V", semi: false, date: null },
-            { name: "Double Suzy Plus", semi: false, date: null },
-            { name: "Left into Right Front Double Cross", semi: false, date: null },
-            { name: "Quadruple Suzy Plus", semi: false, date: null },
-            { name: "Suzy Q Hook Combo Plus", semi: true, date: null },
-            { name: "Triple Four Tap V", semi: false, date: null },
-            { name: "Triple Suzy Plus", semi: false, date: null },
-            { name: "Turn Combo", semi: false, date: null },
-            { name: "Ultra Combo", semi: false, date: null }
+            { name: "Cord Beat Suzy", semi: false, date: '2025-10-29T12:00:00' },
+            { name: "Double Four Tap V", semi: false, date: '2025-10-29T12:00:00' },
+            { name: "Double Suzy Plus", semi: false, date: '2025-10-22T12:00:00' },
+            { name: "Left into Right Front Double Cross", semi: false, date: '2025-11-01T12:00:00' },
+            { name: "Quadruple Suzy Plus", semi: false, date: '2025-10-25T12:00:00' },
+            { name: "Suzy Q Hook Combo Plus", semi: true, date: '2025-10-22T12:00:00' },
+            { name: "Triple Four Tap V", semi: false, date: '2025-11-01T12:00:00' },
+            { name: "Triple Suzy Plus", semi: false, date: '2025-10-22T12:00:00' },
+            { name: "Turn Combo", semi: false, date: '2025-10-15T12:00:00' },
+            { name: "Ultra Combo", semi: false, date: '2025-10-29T12:00:00' },
         ]
     },
     {
@@ -54,26 +56,26 @@ const moveGroups = [
         moves: [
             { name: "Broken Left Turn", semi: false, date: null },
             { name: "Copa", semi: false, date: null },
-            { name: "Cross Body Lead", semi: false, date: null },
-            { name: "Inside Left", semi: false, date: null },
-            { name: "Right Turn", semi: false, date: null }
+            { name: "Cross Body Lead", semi: false, date: '2025-10-18T12:00:00' },
+            { name: "Inside Left", semi: false, date: '2025-10-25T12:00:00' },
+            { name: "Right Turn", semi: false, date: '2025-10-14T12:00:00' }
         ]
     },
     {
         name: "Men's",
         moves: [
             { name: "About Face Right Turn", semi: false, date: null },
-            { name: "Axle Right / Axle Left", semi: false, date: null },
+            { name: "Axle Right / Axle Left", semi: false, date: '2025-10-22T12:00:00' },
             { name: "Back Charge", semi: false, date: null },
-            { name: "Cross Body Lead", semi: false, date: null },
-            { name: "Full Axle Right Turn", semi: false, date: null },
-            { name: "Half Right Half Left", semi: false, date: null },
+            { name: "Cross Body Lead", semi: false, date: '2025-10-18T12:00:00' },
+            { name: "Full Axle Right Turn", semi: false, date: '2025-10-22T12:00:00' },
+            { name: "Half Right Half Left", semi: false, date: '2025-10-15T12:00:00' },
             { name: "Half Left Back Charge", semi: false, date: null },
             { name: "Half Right Back Charge", semi: false, date: null },
             { name: "Left Spot Right Turn (Axel Left)", semi: false, date: null },
             { name: "Side Charge", semi: false, date: null },
-            { name: "Walk Around Left Turn", semi: false, date: null },
-            { name: "3 O'Clock Right Turn", semi: false, date: null }
+            { name: "Walk Around Left Turn", semi: false, date: '2025-10-29T12:00:00' },
+            { name: "3 O'Clock Right Turn", semi: false, date: '2025-10-29T12:00:00' }
         ]
     },
     {
@@ -101,7 +103,6 @@ const moveGroups = [
             { name: "Left Flare", semi: false, date: null },
             { name: "Outside Cutaway", semi: false, date: null },
             { name: "Reverse Crossover Suzy Q", semi: false, date: null },
-            { name: "Right Front Double Cross", semi: false, date: null },
             { name: "Side Slide", semi: false, date: null },
             { name: "Side Triplet", semi: false, date: null },
             { name: "Single Tap Crossover Slide", semi: false, date: null },
