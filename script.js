@@ -1,7 +1,15 @@
 window.addEventListener("DOMContentLoaded", () => {
     const allMoves = moveGroups.flatMap(g => g.moves);
-    let enabledMoves = JSON.parse(localStorage.getItem("enabledMoves")) ||
-        Object.fromEntries(allMoves.map(m => [m.name, true]));
+    let savedMoves = JSON.parse(localStorage.getItem("enabledMoves"));
+    let enabledMoves;
+
+    if (savedMoves) {
+        enabledMoves = savedMoves;
+    } else {
+        // Use each move’s defaultEnabled value on first load
+        enabledMoves = Object.fromEntries(allMoves.map(m => [m.name, m.defaultEnabled]));
+        localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
+    }
 
     const moveListEl = document.getElementById("moveList");
     const randomizeBtn = document.getElementById("randomizeBtn");
