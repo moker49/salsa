@@ -11,7 +11,6 @@ let enabledMoves = JSON.parse(localStorage.getItem("enabledMoves")) ||
 const moveListEl = document.getElementById("moveList");
 const randomizeBtn = document.getElementById("randomizeBtn");
 const currentMoveEl = document.getElementById("currentMove");
-const saveSettingsBtn = document.getElementById("saveSettings");
 
 function renderMoveList() {
     moveListEl.innerHTML = moves.map(m =>
@@ -20,13 +19,13 @@ function renderMoveList() {
 }
 renderMoveList();
 
-saveSettingsBtn.addEventListener("click", () => {
-    document.querySelectorAll("#moveList input").forEach(cb => {
-        enabledMoves[cb.dataset.move] = cb.checked;
-    });
-    localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
-    saveSettingsBtn.textContent = "✅ Saved!";
-    setTimeout(() => saveSettingsBtn.textContent = "💾 Save", 1500);
+// Auto-save whenever checkbox changes
+moveListEl.addEventListener("change", (e) => {
+    if (e.target.matches("input[type='checkbox']")) {
+        const move = e.target.dataset.move;
+        enabledMoves[move] = e.target.checked;
+        localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
+    }
 });
 
 randomizeBtn.addEventListener("click", () => {

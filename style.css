@@ -4,7 +4,6 @@
   --accent: #00b7ff;
   --text: #e6e9ef;
   --muted: #9098a6;
-  --radius: 14px;
   --transition: 0.25s ease;
 }
 
@@ -19,6 +18,12 @@ html, body {
   background: var(--bg);
   color: var(--text);
   font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
   overflow: hidden;
 }
 
@@ -27,16 +32,16 @@ html, body {
   flex-direction: column;
   height: 100%;
   max-width: 480px;
-  margin: auto;
+  width: 100%;
   background: var(--card);
-  border-radius: var(--radius);
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  position: relative;
   overflow: hidden;
 }
 
+/* ---------- Titlebar ---------- */
 .topbar {
-  position: sticky;
-  top: 0;
+  flex: 0 0 auto;
   background: rgba(255,255,255,0.05);
   text-align: center;
   padding: 1rem;
@@ -51,47 +56,73 @@ html, body {
   color: var(--text);
 }
 
+/* ---------- Tabs ---------- */
 .tab-content {
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
   display: none;
   scroll-behavior: smooth;
+  position: relative;
 }
 
 .tab-content.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
-.inner-content {
-  padding: 1.5rem;
-  min-height: calc(100vh - 120px);
+/* Randomizer centered content */
+.randomizer-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
 }
 
 .move-display {
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 700;
   color: var(--accent);
-  margin: 3rem 0 2rem;
   transition: opacity var(--transition);
+  word-break: break-word;
+  max-width: 90%;
+  text-align: center;
 }
 
+/* Randomize button sits just above navbar */
+.fixed-bottom-btn {
+  position: absolute;
+  bottom: 70px; /* height of navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 440px;
+  margin: 0 auto;
+  z-index: 90;
+}
+
+/* ---------- Buttons ---------- */
 .primary-btn {
   background: var(--accent);
   color: #fff;
   font-weight: 600;
   border: none;
-  border-radius: var(--radius);
+  border-radius: 10px;
   padding: 14px;
-  width: 100%;
   font-size: 1rem;
   cursor: pointer;
-  transition: background var(--transition), transform var(--transition);
+  transition: background var(--transition);
 }
 
-.primary-btn:hover {
-  background: #00a5e5;
-  transform: scale(1.02);
+.primary-btn:active {
+  background: #0095d8;
+}
+
+/* ---------- Settings tab ---------- */
+.inner-content {
+  flex: 1;
+  padding: 1.5rem;
 }
 
 #moveList label {
@@ -106,9 +137,9 @@ html, body {
   margin-right: 10px;
 }
 
+/* ---------- Navbar ---------- */
 .navbar {
-  position: sticky;
-  bottom: 0;
+  flex: 0 0 auto;
   display: flex;
   justify-content: space-around;
   background: rgba(255,255,255,0.05);
