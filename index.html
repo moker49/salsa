@@ -21,9 +21,21 @@
         </header>
 
         <div id="sortMenu" class="sort-menu hidden">
-            <button data-sort="alphaAsc">Alphabetical</button>
-            <button data-sort="dateDesc">Newest First</button>
-            <button data-sort="dateAsc">Oldest First</button>
+            <label class="sort-option">
+                <input type="radio" name="sortOption" value="alphaAsc">
+                <span class="radio-custom"></span>
+                <span class="sort-label">Alphabetical</span>
+            </label>
+            <label class="sort-option">
+                <input type="radio" name="sortOption" value="dateDesc">
+                <span class="radio-custom"></span>
+                <span class="sort-label">Newest First</span>
+            </label>
+            <label class="sort-option">
+                <input type="radio" name="sortOption" value="dateAsc">
+                <span class="radio-custom"></span>
+                <span class="sort-label">Oldest First</span>
+            </label>
         </div>
 
         <section id="tab-randomizer" class="tab-content active">

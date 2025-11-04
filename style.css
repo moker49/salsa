@@ -110,6 +110,60 @@ body {
   background: rgba(255,255,255,0.08);
 }
 
+/* ---------- Sort Menu with Material Radio Buttons ---------- */
+.sort-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.sort-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sort-option input {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--muted);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  flex-shrink: 0;
+  margin: 0.2rem
+}
+
+.sort-option input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform var(--transition);
+}
+
+.sort-option input:checked {
+  border-color: var(--accent);
+}
+
+.sort-option input:checked::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.sort-label {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
 /* ---------- Tabs ---------- */
 .tab-content {
   flex: 1 1 auto;

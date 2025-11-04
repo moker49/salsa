@@ -1,15 +1,24 @@
 window.addEventListener("DOMContentLoaded", () => {
+    // --- Build current list of all moves ---
     const allMoves = moveGroups.flatMap(g => g.moves);
-    let savedMoves = JSON.parse(localStorage.getItem("enabledMoves"));
-    let enabledMoves;
+    const allMoveNames = allMoves.map(m => m.name);
 
-    if (savedMoves) {
-        enabledMoves = savedMoves;
-    } else {
-        // Use each move’s defaultEnabled value on first load
-        enabledMoves = Object.fromEntries(allMoves.map(m => [m.name, m.defaultEnabled]));
-        localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
+    // --- Load saved moves, clean up, and merge defaults ---
+    let savedMoves = JSON.parse(localStorage.getItem("enabledMoves")) || {};
+    let enabledMoves = {};
+
+    // Keep only valid moves and fill missing ones
+    for (const move of allMoves) {
+        if (move.name in savedMoves) {
+            enabledMoves[move.name] = savedMoves[move.name];
+        } else {
+            // New move — enabled if it has a date
+            enabledMoves[move.name] = !!move.date;
+        }
     }
+
+    // Save the cleaned version back to storage
+    localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
 
     const moveListEl = document.getElementById("moveList");
     const randomizeBtn = document.getElementById("randomizeBtn");
@@ -19,9 +28,26 @@ window.addEventListener("DOMContentLoaded", () => {
     const titleText = document.getElementById("titleText");
 
     const sortModes = {
-        alphaAsc: { label: "Alphabetical", fn: (a, b) => a.name.localeCompare(b.name) },
-        dateDesc: { label: "Newest First", fn: (a, b) => new Date(b.date) - new Date(a.date) },
-        dateAsc: { label: "Oldest First", fn: (a, b) => new Date(a.date) - new Date(b.date) }
+        alphaAsc: {
+            label: "Alphabetical",
+            fn: (a, b) => a.name.localeCompare(b.name)
+        },
+        dateDesc: {
+            label: "Newest First",
+            fn: (a, b) => {
+                const da = a.date ? new Date(a.date) : new Date(0); // fallback = oldest
+                const db = b.date ? new Date(b.date) : new Date(0);
+                return db - da;
+            }
+        },
+        dateAsc: {
+            label: "Oldest First",
+            fn: (a, b) => {
+                const da = a.date ? new Date(a.date) : new Date(8640000000000000); // fallback = far future
+                const db = b.date ? new Date(b.date) : new Date(8640000000000000);
+                return da - db;
+            }
+        }
     };
 
     let currentSort = localStorage.getItem("sortMode") || "dateDesc";
@@ -42,7 +68,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 <span class="checkbox-custom"></span>
               </div>
               <span class="move-name">${m.name}</span>
-              <span class="move-date">${new Date(m.date).toLocaleDateString()}</span>
+              <span class="move-date">${m.date ? new Date(m.date).toLocaleDateString() : "—"}</span>
             </label>`
                     )
                     .join("")}
@@ -99,16 +125,21 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Sort menu toggle
+    // --- Sort menu toggle ---
     sortBtn.addEventListener("click", e => {
         e.stopPropagation();
         sortMenu.classList.toggle("hidden");
+
+        // Sync radio states when opening
+        document.querySelectorAll('.sort-option input').forEach(input => {
+            input.checked = input.value === currentSort;
+        });
     });
 
-    // Select sort mode
-    sortMenu.addEventListener("click", e => {
-        if (e.target.matches("button[data-sort]")) {
-            currentSort = e.target.dataset.sort;
+    // --- Sort option selection ---
+    sortMenu.addEventListener("change", e => {
+        if (e.target.matches("input[name='sortOption']")) {
+            currentSort = e.target.value;
             localStorage.setItem("sortMode", currentSort);
             renderMoveList();
             sortMenu.classList.add("hidden");
