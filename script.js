@@ -24,26 +24,33 @@ window.addEventListener("DOMContentLoaded", () => {
         dateAsc: { label: "Oldest First", fn: (a, b) => new Date(a.date) - new Date(b.date) }
     };
 
-    let currentSort = localStorage.getItem("sortMode") || "alphaAsc";
+    let currentSort = localStorage.getItem("sortMode") || "dateDesc";
 
     function renderMoveList() {
         moveListEl.innerHTML = "";
         moveGroups.forEach(group => {
             const sorted = [...group.moves].sort(sortModes[currentSort].fn);
             const html = `
-        <div class="move-group">
-          <h3>${group.name}</h3>
-          ${sorted.map(m => `
-            <label>
-              <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
-              ${m.name}
-            </label>
-          `).join("")}
-        </div>
-      `;
+      <div class="move-group">
+        <h3>${group.name}</h3>
+        ${sorted
+                    .map(
+                        m => `
+            <label class="move-item">
+              <div class="checkbox-wrapper">
+                <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
+                <span class="checkbox-custom"></span>
+              </div>
+              <span class="move-name">${m.name}</span>
+              <span class="move-date">${new Date(m.date).toLocaleDateString()}</span>
+            </label>`
+                    )
+                    .join("")}
+      </div>`;
             moveListEl.insertAdjacentHTML("beforeend", html);
         });
     }
+
 
     renderMoveList();
 
