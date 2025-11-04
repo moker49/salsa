@@ -1,6 +1,6 @@
 const moveGroups = [
     {
-        name: "Basics",
+        name: "Simple",
         moves: [
             { name: "Basic", semi: false, date: '2025-10-01T12:00:00' },
             { name: "Cord Beat Crossover", semi: false, date: '2025-10-29T12:00:00' },
@@ -16,7 +16,7 @@ const moveGroups = [
         ]
     },
     {
-        name: "Basic Combos",
+        name: "Simple Combos",
         moves: [
             { name: "Hot Toe Suzy", semi: false, date: '2025-10-08T12:00:00' },
             { name: "Suzy Cross Suzy", semi: false, date: '2025-10-11T12:00:00' },

@@ -64,9 +64,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // Detect uncategorized or unnamed group
             const isUncategorized = !group.name || group.name.toLowerCase() === "uncategorized";
+            const isPartnerwork = !group.name || group.name.toLowerCase() === "women's" || group.name.toLowerCase() === "men's";
 
             // If no prior state exists and this is uncategorized → default collapsed
-            if (!(group.name in collapsedGroups) && isUncategorized) {
+            if (!(group.name in collapsedGroups) && (isUncategorized || isPartnerwork)) {
                 collapsedGroups[group.name] = true;
                 localStorage.setItem("collapsedGroups", JSON.stringify(collapsedGroups));
             }
