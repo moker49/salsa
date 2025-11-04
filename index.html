@@ -5,15 +5,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dance Move Randomizer</title>
+
+    <!-- Google Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <div class="app">
-
         <header class="topbar">
             <h1 id="titleText">Dance Move Randomizer</h1>
-            <button id="sortBtn" title="Change Sort Order">⇅</button>
+            <button id="sortBtn" title="Sort">
+                <span class="material-symbols-rounded">sort</span>
+            </button>
         </header>
 
         <div id="sortMenu" class="sort-menu hidden">
@@ -24,9 +29,11 @@
 
         <section id="tab-randomizer" class="tab-content active">
             <div class="randomizer-content">
-                <div id="currentMove" class="move-display">Press “Randomize” to begin!</div>
+                <div id="currentMove" class="move-display">Press the icon below!</div>
             </div>
-            <button id="randomizeBtn" class="primary-btn fixed-bottom-btn">🎲 Randomize</button>
+            <button id="randomizeBtn" class="fab-btn" title="Randomize">
+                <span class="material-symbols-rounded">shuffle</span>
+            </button>
         </section>
 
         <section id="tab-settings" class="tab-content">
@@ -37,11 +44,11 @@
 
         <nav class="navbar">
             <button class="nav-btn active" data-tab="tab-randomizer">
-                <span>🎲</span>
+                <span class="material-symbols-rounded">casino</span>
                 <p>Randomizer</p>
             </button>
             <button class="nav-btn" data-tab="tab-settings">
-                <span>⚙️</span>
+                <span class="material-symbols-rounded">settings</span>
                 <p>Settings</p>
             </button>
         </nav>

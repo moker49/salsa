@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const sortModes = {
         alphaAsc: { label: "Alphabetical", fn: (a, b) => a.name.localeCompare(b.name) },
         dateDesc: { label: "Newest First", fn: (a, b) => new Date(b.date) - new Date(a.date) },
-        dateAsc: { label: "Oldest First", fn: (a, b) => new Date(a.date) - new Date(b.date) },
+        dateAsc: { label: "Oldest First", fn: (a, b) => new Date(a.date) - new Date(b.date) }
     };
 
     let currentSort = localStorage.getItem("sortMode") || "alphaAsc";
