@@ -25,17 +25,14 @@ window.addEventListener("DOMContentLoaded", () => {
     const currentMoveEl = document.getElementById("currentMove");
     const sortBtn = document.getElementById("sortBtn");
     const sortMenu = document.getElementById("sortMenu");
-    const titleText = document.getElementById("titleText");
+    const semiToggle = document.getElementById("semiToggle");
 
     const sortModes = {
-        alphaAsc: {
-            label: "Alphabetical",
-            fn: (a, b) => a.name.localeCompare(b.name)
-        },
+        alphaAsc: { label: "Alphabetical", fn: (a, b) => a.name.localeCompare(b.name) },
         dateDesc: {
             label: "Newest First",
             fn: (a, b) => {
-                const da = a.date ? new Date(a.date) : new Date(0); // fallback = oldest
+                const da = a.date ? new Date(a.date) : new Date(0);
                 const db = b.date ? new Date(b.date) : new Date(0);
                 return db - da;
             }
@@ -43,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
         dateAsc: {
             label: "Oldest First",
             fn: (a, b) => {
-                const da = a.date ? new Date(a.date) : new Date(8640000000000000); // fallback = far future
+                const da = a.date ? new Date(a.date) : new Date(8640000000000000);
                 const db = b.date ? new Date(b.date) : new Date(8640000000000000);
                 return da - db;
             }
@@ -52,74 +49,73 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let currentSort = localStorage.getItem("sortMode") || "dateDesc";
 
+    // --- Semi toggle state management ---
+    let semiEnabled = localStorage.getItem("semiEnabled") === "true";
+
+    function syncSemiUI() {
+        semiToggle.checked = semiEnabled;
+    }
+
+    semiToggle.addEventListener("change", () => {
+        semiEnabled = semiToggle.checked;
+        localStorage.setItem("semiEnabled", String(semiEnabled));
+        syncSemiUI();
+    });
+
+    syncSemiUI();
+
+    // --- Render the move list ---
     function renderMoveList() {
         moveListEl.innerHTML = "";
-
-        // Load category collapse states
         const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
 
         moveGroups.forEach(group => {
-            // Load collapse state map from localStorage
             const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
-
-            // Detect uncategorized or unnamed group
             const isUncategorized = !group.name || group.name.toLowerCase() === "uncategorized";
-            const isPartnerwork = !group.name || group.name.toLowerCase() === "women's" || group.name.toLowerCase() === "men's";
+            const isPartnerwork = !group.name || group.name.toLowerCase().includes("men's");
 
-            // If no prior state exists and this is uncategorized → default collapsed
             if (!(group.name in collapsedGroups) && (isUncategorized || isPartnerwork)) {
                 collapsedGroups[group.name] = true;
                 localStorage.setItem("collapsedGroups", JSON.stringify(collapsedGroups));
             }
 
-            // Now get the effective state
             const isCollapsed = collapsedGroups[group.name] || false;
-
-            // Sort moves normally
             const sorted = [...group.moves].sort(sortModes[currentSort].fn);
 
-            // Render the group HTML
             const groupHTML = `
-            <div class="move-group ${isCollapsed ? "collapsed" : ""}" data-group="${group.name}">
-            <h3 class="group-header ${isCollapsed ? "collapsed" : ""}">
-                ${group.name}
-                <span class="material-symbols-rounded collapse-icon">
-                ${isCollapsed ? "expand_less" : "expand_less"}
-                </span>
-            </h3>
-            <div class="group-moves" style="display:${isCollapsed ? "none" : "block"}">
-                ${sorted
-                    .map(
-                        m => `
-                    <label class="move-item">
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
-                        <span class="checkbox-custom"></span>
+                <div class="move-group ${isCollapsed ? "collapsed" : ""}" data-group="${group.name}">
+                    <h3 class="group-header ${isCollapsed ? "collapsed" : ""}">
+                        ${group.name}
+                        <span class="material-symbols-rounded collapse-icon">
+                            expand_less
+                        </span>
+                    </h3>
+                    <div class="group-moves" style="display:${isCollapsed ? "none" : "block"}">
+                        ${sorted.map(m => `
+                            <label class="move-item">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
+                                    <span class="checkbox-custom"></span>
+                                </div>
+                                <span class="move-name">${m.name}</span>
+                                <span class="move-date">${m.date ? new Date(m.date).toLocaleDateString() : "—"}</span>
+                            </label>`).join("")}
                     </div>
-                    <span class="move-name">${m.name}</span>
-                    <span class="move-date">${m.date ? new Date(m.date).toLocaleDateString() : "—"}</span>
-                    </label>`
-                    )
-                    .join("")}
-            </div>
-            </div>`;
+                </div>`;
             moveListEl.insertAdjacentHTML("beforeend", groupHTML);
         });
 
-
-        // --- Toggle collapse on header click ---
+        // Collapse toggle behavior
         document.querySelectorAll(".group-header").forEach(header => {
             header.addEventListener("click", () => {
                 const groupEl = header.closest(".move-group");
                 const groupName = groupEl.dataset.group;
                 const movesEl = groupEl.querySelector(".group-moves");
-                const iconEl = header.querySelector(".collapse-icon");
                 const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
 
                 const isCollapsed = groupEl.classList.toggle("collapsed");
                 movesEl.style.display = isCollapsed ? "none" : "block";
                 header.classList.toggle("collapsed", isCollapsed);
-                iconEl.textContent = isCollapsed ? "expand_less" : "expand_less";
 
                 collapsedGroups[groupName] = isCollapsed;
                 localStorage.setItem("collapsedGroups", JSON.stringify(collapsedGroups));
@@ -127,11 +123,9 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-
     renderMoveList();
 
-    // Auto-save on checkbox change
+    // --- Save move changes ---
     moveListEl.addEventListener("change", e => {
         if (e.target.matches("input[type='checkbox']")) {
             const move = e.target.dataset.move;
@@ -140,45 +134,45 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Randomize button
+    // --- Randomizer logic ---
     let lastRandomMove = null;
     randomizeBtn.addEventListener("click", () => {
         const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
 
-        // Collect only moves from non-collapsed groups
         const activeMoves = moveGroups
             .filter(g => !collapsedGroups[g.name])
             .flatMap(g => g.moves)
-            .filter(m => enabledMoves[m.name])
-            .map(m => m.name);
+            .filter(m => enabledMoves[m.name]);
 
         if (activeMoves.length === 0) {
             currentMoveEl.textContent = "No moves selected!";
             return;
         }
 
-        // Pick a random move different from the last one (if possible)
-        let move;
+        let moveObj;
         if (activeMoves.length === 1) {
-            move = activeMoves[0];
+            moveObj = activeMoves[0];
         } else {
             do {
-                move = activeMoves[Math.floor(Math.random() * activeMoves.length)];
-            } while (move === lastRandomMove);
+                moveObj = activeMoves[Math.floor(Math.random() * activeMoves.length)];
+            } while (moveObj.name === lastRandomMove);
         }
 
-        lastRandomMove = move;
+        lastRandomMove = moveObj.name;
+
+        let displayName = moveObj.name;
+        if (semiEnabled && moveObj.semi && Math.random() < 0.40) {
+            displayName += " (semi)";
+        }
 
         currentMoveEl.style.opacity = 0;
         setTimeout(() => {
-            currentMoveEl.textContent = move;
+            currentMoveEl.textContent = displayName;
             currentMoveEl.style.opacity = 1;
         }, 150);
     });
 
-
-
-    // Tab switching
+    // --- Tab switching ---
     document.querySelectorAll(".nav-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
@@ -201,8 +195,6 @@ window.addEventListener("DOMContentLoaded", () => {
     sortBtn.addEventListener("click", e => {
         e.stopPropagation();
         sortMenu.classList.toggle("hidden");
-
-        // Sync radio states when opening
         document.querySelectorAll('.sort-option input').forEach(input => {
             input.checked = input.value === currentSort;
         });
@@ -218,7 +210,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Hide menu when clicking elsewhere
     document.addEventListener("click", e => {
         if (!sortMenu.classList.contains("hidden")) {
             sortMenu.classList.add("hidden");

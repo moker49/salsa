@@ -1,9 +1,18 @@
 :root {
+  /* Core palette */
   --bg: #0f1115;
   --card: #1b1e24;
-  --accent: #00b7ff;
   --text: #e6e9ef;
   --muted: #9098a6;
+  --accent: #00b7ff;
+
+  /* States / borders (match what you already used) */
+  --accent-pressed: #0095d8;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --elev-05: rgba(255, 255, 255, 0.05);
+  --elev-10: rgba(255, 255, 255, 0.10);
+  --hover: rgba(255, 255, 255, 0.08);
   --transition: 0.25s ease;
 }
 
@@ -47,12 +56,12 @@ body {
 /* ---------- Titlebar ---------- */
 .topbar {
   flex: 0 0 auto;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--elev-05);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border);
   z-index: 100;
 }
 
@@ -121,7 +130,7 @@ body {
 }
 
 .sort-option:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border);
 }
 
 .sort-option input {
@@ -220,13 +229,8 @@ body {
   z-index: 90;
 }
 
-.fab-btn:hover {
-  background: #00a5e5;
-  transform: translateX(-50%) scale(1.05);
-}
-
 .fab-btn:active {
-  background: #0095d8;
+  background: var(--accent-pressed);
 }
 
 /* ---------- Settings Tab ---------- */
@@ -361,13 +365,81 @@ body {
   transform: rotate(180deg);
 }
 
+/* ----- Semi Mode Toggle (bottom bar, flush above navbar) ----- */
+.semi-toggle-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.9rem 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 95;
+}
+
+/* Label layout */
+.semi-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.toggle-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Hidden input */
+.toggle-input {
+  display: none;
+}
+
+/* Material 3-style track */
+.toggle-slider {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  transition: background-color 0.25s ease;
+}
+
+/* Thumb */
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+/* Active state */
+.toggle-input:checked + .toggle-slider {
+  background-color: var(--accent);
+}
+
+.toggle-input:checked + .toggle-slider::before {
+  transform: translateX(22px);
+  background-color: #fff;
+}
+
 /* ---------- Navbar ---------- */
 .navbar {
   flex: 0 0 auto;
   display: flex;
   justify-content: space-around;
-  background: rgba(255, 255, 255, 0.05);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--elev-05);
+  border-top: 1px solid var(--border);
   z-index: 100;
 }
 
