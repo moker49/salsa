@@ -93,10 +93,6 @@ body {
   border-radius: 50%;
 }
 
-.topbar-btn:hover {
-  background: var(--hover);
-}
-
 .topbar-btn:active {
   transform: scale(0.92);
 }
@@ -133,10 +129,6 @@ body {
   font-size: 0.95rem;
   cursor: pointer;
   transition: background var(--transition);
-}
-
-.sort-menu button:hover {
-  background: rgba(255,255,255,0.08);
 }
 
 /* ---------- Sort Menu with Material Radio Buttons ---------- */
