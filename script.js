@@ -121,7 +121,11 @@ window.addEventListener("DOMContentLoaded", () => {
                                     <span class="checkbox-custom"></span>
                                 </div>
                                 <span class="move-name">${m.name}</span>
-                                <span class="move-date">${m.date ? new Date(m.date).toLocaleDateString() : "—"}</span>
+                                <span class="move-date">
+                                    ${m.date
+                    ? new Date(m.date).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit" })
+                    : "—"}
+                                </span>
                             </label>`).join("")}
                     </div>
                 </div>`;
