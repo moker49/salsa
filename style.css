@@ -524,3 +524,10 @@ body {
 .fab-btn.first-time {
   animation: pulse-once 1.5s ease-in-out infinite alternate;
 }
+
+button, 
+input[type="checkbox"], 
+.icon-btn, 
+.fab-btn {
+  touch-action: manipulation;
+}
