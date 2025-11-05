@@ -49,6 +49,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const sortBtn = document.getElementById("sortBtn");
     const sortMenu = document.getElementById("sortMenu");
     const semiToggle = document.getElementById("semiToggle");
+    const semiContainer = document.querySelector(".semi-toggle-container");
 
     const sortModes = {
         alphaAsc: { label: "Alphabetical", fn: (a, b) => a.name.localeCompare(b.name) },
@@ -169,9 +170,18 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // if (!localStorage.getItem("randomizeUsed")) {
-    randomizeBtn.classList.add("first-time");
-    // }
+    if (!localStorage.getItem("randomizeUsed")) {
+        randomizeBtn.classList.add("first-time");
+    }
+
+    const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
+
+    const semiUnlocked = localStorage.getItem("semiUnlocked") ?? "false";
+    if (semiUnlocked === "true") {
+        semiContainer.classList.add("visible");
+    }
+
+    let randomizeCount = 0;
 
     // --- Randomizer logic ---
     let lastRandomMove = null;
@@ -185,12 +195,18 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         // first-time use handling
-        // if (!localStorage.getItem("randomizeUsed")) {
-        //   localStorage.setItem("randomizeUsed", "true");
-        randomizeBtn.classList.remove("first-time");
-        // }
+        if (!localStorage.getItem("randomizeUsed")) {
+            localStorage.setItem("randomizeUsed", "true");
+            randomizeBtn.classList.remove("first-time");
+        }
 
-        const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
+        randomizeCount++;
+
+        // reveal semi toggle after 3 presses
+        if (randomizeCount === 3 && semiContainer) {
+            semiContainer.classList.add("visible");
+            localStorage.setItem("semiUnlocked", "true");
+        }
 
         const activeMoves = moveGroups
             .filter(g => !collapsedGroups[g.name])

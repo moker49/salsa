@@ -38,6 +38,11 @@ body {
   overflow: hidden;
 }
 
+#tab-randomizer {
+  overflow: hidden;
+  height: 100%;
+}
+
 /* ---------- App Layout ---------- */
 .app {
   display: flex;
@@ -358,6 +363,8 @@ body {
 
 /* ----- Semi Mode Toggle (bottom bar, flush above navbar) ----- */
 .semi-toggle-container {
+  display: flex;
+  transition: opacity 0.3s ease;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -365,10 +372,17 @@ body {
   padding: 0.9rem 1.25rem;
   background: rgba(255, 255, 255, 0.04);
   border-top: 1px solid var(--border);
-  display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 95;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.45s ease;
+}
+
+.semi-toggle-container.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Label layout */
