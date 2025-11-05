@@ -238,10 +238,6 @@ body {
   padding-top: 0;
 }
 
-.move-group {
-  margin-top: 1rem;
-}
-
 .move-group h3 {
   margin-bottom: 0;
   color: var(--accent);
@@ -337,6 +333,7 @@ body {
 
 /* ----- Collapsible Groups ----- */
 .group-header {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
