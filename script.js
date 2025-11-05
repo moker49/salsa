@@ -202,8 +202,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
         randomizeCount++;
 
-        // reveal semi toggle after 3 presses
-        if (randomizeCount === 3 && semiContainer) {
+        // reveal semi toggle after 4 presses
+        if (randomizeCount === 4 && semiContainer) {
             semiContainer.classList.add("visible");
             localStorage.setItem("semiUnlocked", "true");
         }

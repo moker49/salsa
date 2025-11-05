@@ -79,13 +79,30 @@ body {
   text-overflow: ellipsis;
 }
 
-#sortBtn {
+.topbar-btn {
   background: none;
   border: none;
   color: var(--text);
   font-size: 1.6rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: color var(--transition), transform var(--transition);
+  padding: 0.4rem;
+  border-radius: 50%;
+}
+
+.topbar-btn:hover {
+  background: var(--hover);
+}
+
+.topbar-btn:active {
+  transform: scale(0.92);
+}
+
+/* keep your original visibility behavior */
+#sortBtn {
   visibility: hidden; /* visible only on settings tab */
 }
 
