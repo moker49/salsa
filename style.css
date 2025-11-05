@@ -479,9 +479,25 @@ body {
 /* --- Spin animation for the randomize icon --- */
 @keyframes spin-once {
   from { transform: rotate(0deg); }
-  to { transform: rotate(180deg); }
+  to { transform: rotate(360deg); }
 }
 
 .spin {
   animation: spin-once 0.5s ease;
+}
+
+/* --- Randomize button first-time highlight --- */
+@keyframes pulse-once {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--accent-pressed);
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px var(--accent-pressed);
+    transform: translateX(-50%) scale(1.06);
+  }
+}
+
+.fab-btn.first-time {
+  animation: pulse-once 1.5s ease-in-out infinite alternate;
 }

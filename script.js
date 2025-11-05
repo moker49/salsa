@@ -169,6 +169,10 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // if (!localStorage.getItem("randomizeUsed")) {
+    randomizeBtn.classList.add("first-time");
+    // }
+
     // --- Randomizer logic ---
     let lastRandomMove = null;
     randomizeBtn.addEventListener("click", () => {
@@ -179,6 +183,12 @@ window.addEventListener("DOMContentLoaded", () => {
             void icon.offsetWidth; // force reflow so animation restarts
             icon.classList.add("spin");
         }
+
+        // first-time use handling
+        // if (!localStorage.getItem("randomizeUsed")) {
+        //   localStorage.setItem("randomizeUsed", "true");
+        randomizeBtn.classList.remove("first-time");
+        // }
 
         const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
 
