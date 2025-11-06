@@ -1,7 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
     // --- Build current list of all moves ---
     const allMoves = moveGroups.flatMap(g => g.moves);
-    const allMoveNames = allMoves.map(m => m.name);
 
     // --- Load saved moves, clean up, and merge defaults ---
     let savedMoves = JSON.parse(localStorage.getItem("enabledMoves")) || {};
@@ -50,6 +49,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const sortMenu = document.getElementById("sortMenu");
     const semiToggle = document.getElementById("semiToggle");
     const semiContainer = document.querySelector(".semi-toggle-container");
+    const introMessages = [
+        "Hit the beat!",
+        "Kick it off!",
+        "Spin it up!",
+        "Give it a spin!",
+    ];
+    currentMoveEl.textContent = introMessages[Math.floor(Math.random() * introMessages.length)];
 
     const sortModes = {
         alphaAsc: { label: "Alphabetical", fn: (a, b) => a.name.localeCompare(b.name) },
@@ -215,7 +221,7 @@ window.addEventListener("DOMContentLoaded", () => {
             .filter(m => enabledMoves[m.name]);
 
         if (activeMoves.length === 0) {
-            currentMoveEl.textContent = "No moves selected!";
+            currentMoveEl.textContent = "Nothing to spin!";
             return;
         }
 
