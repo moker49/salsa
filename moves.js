@@ -11,6 +11,7 @@ const moveGroups = [
             { name: "Semi Circle", semi: false, date: '2025-10-15T12:00:00' },
             { name: "Side Basic", semi: true, date: '2025-10-01T12:00:00' },
             { name: "Side Basic Plus", semi: false, date: '2025-10-22T12:00:00' },
+            { name: "Side Triplet", semi: false, date: '2025-11-05T12:00:00' },
             { name: "Suzy Q", semi: true, date: '2025-10-04T12:00:00' },
             { name: "Switch Timing", semi: false, date: '2025-10-18T12:00:00' },
         ]
@@ -65,7 +66,7 @@ const moveGroups = [
     {
         name: "Men's",
         moves: [
-            { name: "About Face Right Turn", semi: false, date: null },
+            { name: "About Face Right Turn", semi: false, date: '2025-11-05T12:00:00' },
             { name: "Axle Right / Axle Left", semi: false, date: '2025-10-22T12:00:00' },
             { name: "Back Charge", semi: false, date: null },
             { name: "Cross Body Lead", semi: false, date: '2025-10-18T12:00:00' },
@@ -104,7 +105,6 @@ const moveGroups = [
             { name: "Outside Cutaway", semi: false, date: null },
             { name: "Reverse Crossover Suzy Q", semi: false, date: null },
             { name: "Side Slide", semi: false, date: null },
-            { name: "Side Triplet", semi: false, date: null },
             { name: "Single Tap Crossover Slide", semi: false, date: null },
             { name: "Single Tap Crossover Slide Plus", semi: false, date: null },
             { name: "Slave", semi: false, date: null },
