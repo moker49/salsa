@@ -521,6 +521,37 @@ body {
   }
 }
 
+/* highlight for the Settings tab */
+.nav-btn.highlight {
+  position: relative;
+}
+
+.nav-btn.highlight::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40%;
+  height: 130%;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.3;
+  transform: translate(-50%, -50%) scale(1);
+  animation: tabPulse 0.8s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes tabPulse {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.8);
+  }
+}
+
 .fab-btn.first-time {
   animation: pulse-once 1.5s ease-in-out infinite alternate;
 }

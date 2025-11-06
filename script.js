@@ -220,8 +220,16 @@ window.addEventListener("DOMContentLoaded", () => {
             .flatMap(g => g.moves)
             .filter(m => enabledMoves[m.name]);
 
+        const noMovesMsg = "Nothing to spin!";
+        const settingsTabBtn = document.querySelector('[data-tab="tab-settings"]');
+
         if (activeMoves.length === 0) {
-            currentMoveEl.textContent = "Nothing to spin!";
+            if (currentMoveEl.textContent === noMovesMsg) {
+                settingsTabBtn.classList.add("highlight");
+                setTimeout(() => settingsTabBtn.classList.remove("highlight"), 1200);
+            } else {
+                currentMoveEl.textContent = noMovesMsg;
+            }
             return;
         }
 
