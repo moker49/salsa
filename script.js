@@ -174,8 +174,6 @@ window.addEventListener("DOMContentLoaded", () => {
         randomizeBtn.classList.add("first-time");
     }
 
-    const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
-
     const semiUnlocked = localStorage.getItem("semiUnlocked") ?? "false";
     if (semiUnlocked === "true") {
         semiContainer.classList.add("visible");
@@ -207,6 +205,9 @@ window.addEventListener("DOMContentLoaded", () => {
             semiContainer.classList.add("visible");
             localStorage.setItem("semiUnlocked", "true");
         }
+
+        const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
+        const enabledMoves = JSON.parse(localStorage.getItem("enabledMoves")) || {};
 
         const activeMoves = moveGroups
             .filter(g => !collapsedGroups[g.name])
