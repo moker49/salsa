@@ -97,7 +97,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // --- Render the move list ---
     function renderMoveList() {
         moveListEl.innerHTML = "";
-        const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
 
         moveGroups.forEach(group => {
             const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
@@ -187,6 +186,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let randomizeCount = 0;
 
+    function pulseHighlight(target) {
+        target.removeEventListener("animationend", handleAnimationEnd);
+        target.classList.remove("highlight");
+        void target.offsetWidth; // flush styles, restart animation timing
+        target.classList.add("highlight");
+        target.addEventListener("animationend", handleAnimationEnd);
+        function handleAnimationEnd() {
+            target.classList.remove("highlight");
+            target.removeEventListener("animationend", handleAnimationEnd);
+        }
+    }
+
     // --- Randomizer logic ---
     let lastRandomMove = null;
     randomizeBtn.addEventListener("click", () => {
@@ -225,8 +236,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (activeMoves.length === 0) {
             if (currentMoveEl.textContent === noMovesMsg) {
-                settingsTabBtn.classList.add("highlight");
-                setTimeout(() => settingsTabBtn.classList.remove("highlight"), 1200);
+                pulseHighlight(settingsTabBtn);
             } else {
                 currentMoveEl.textContent = noMovesMsg;
             }
