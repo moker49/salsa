@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const currentMoveEl = document.getElementById("currentMove");
     const sortBtn = document.getElementById("sortBtn");
     const sortMenu = document.getElementById("sortMenu");
-    const semiToggle = document.getElementById("semiToggle");
+    const semiButtons = document.querySelectorAll(".semi-toggle-group .md3-segment");
     const semiContainer = document.querySelector(".semi-toggle-container");
     const introMessages = [
         "Hit the beat!",
@@ -80,19 +80,21 @@ window.addEventListener("DOMContentLoaded", () => {
     let currentSort = localStorage.getItem("sortMode") || "dateDesc";
 
     // --- Semi toggle state management ---
-    let semiEnabled = localStorage.getItem("semiEnabled") === "true";
+    let semiEnabled = localStorage.getItem("semiEnabled") || "false";
 
-    function syncSemiUI() {
-        semiToggle.checked = semiEnabled;
-    }
+    updateSemiButtons();
 
-    semiToggle.addEventListener("change", () => {
-        semiEnabled = semiToggle.checked;
-        localStorage.setItem("semiEnabled", String(semiEnabled));
-        syncSemiUI();
+    semiButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            semiEnabled = btn.dataset.value;
+            localStorage.setItem("semiEnabled", semiEnabled);
+            updateSemiButtons();
+        });
     });
 
-    syncSemiUI();
+    function updateSemiButtons() {
+        semiButtons.forEach(b => b.classList.toggle("active", b.dataset.value === semiEnabled));
+    }
 
     // --- Render the move list ---
     function renderMoveList() {
@@ -311,7 +313,8 @@ window.addEventListener("DOMContentLoaded", () => {
         lastRandomMove = moveObj.name;
 
         let displayName = moveObj.name;
-        if (semiEnabled && moveObj.semi && Math.random() < 0.50) {
+        let chance = semiEnabled === "full" ? 1.0 : semiEnabled === "true" ? 0.5 : 0.0;
+        if (semiEnabled && moveObj.semi && Math.random() < chance) {
             displayName += " (semi)";
         }
 

@@ -11,7 +11,7 @@ const moveGroups = [
             { name: "Semi Circle", semi: false, date: '2025-10-15T12:00:00' },
             { name: "Side Basic", semi: true, date: '2025-10-01T12:00:00' },
             { name: "Side Basic Plus", semi: false, date: '2025-10-22T12:00:00' },
-            { name: "Side Triplet", semi: false, date: '2025-11-05T12:00:00' },
+            { name: "Side Triplet", semi: true, date: '2025-11-05T12:00:00' },
             { name: "Suzy Q", semi: true, date: '2025-10-04T12:00:00' },
             { name: "Switch Timing", semi: false, date: '2025-10-18T12:00:00' },
         ]
@@ -19,9 +19,9 @@ const moveGroups = [
     {
         name: "Simple Combos",
         moves: [
-            { name: "Hot Toe Suzy", semi: false, date: '2025-10-08T12:00:00' },
-            { name: "Suzy Cross Suzy", semi: false, date: '2025-10-11T12:00:00' },
-            { name: "Suzy Cross Suzy With A Turn", semi: false, date: '2025-10-25T12:00:00' },
+            { name: "Hot Toe Suzy", semi: true, date: '2025-10-08T12:00:00' },
+            { name: "Suzy Cross Suzy", semi: true, date: '2025-10-11T12:00:00' },
+            { name: "Suzy Cross Suzy With A Turn", semi: true, date: '2025-10-25T12:00:00' },
             { name: "Suzy Q Hook Combo", semi: true, date: '2025-10-08T12:00:00' },
         ]
     },
@@ -30,7 +30,7 @@ const moveGroups = [
         moves: [
             { name: "Downtown", semi: true, date: '2025-10-11T12:00:00' },
             { name: "Downtown with a Turn", semi: true, date: '2025-10-25T12:00:00' },
-            { name: "Four Tap V", semi: false, date: '2025-10-29T12:00:00' },
+            { name: "Four Tap V", semi: true, date: '2025-10-29T12:00:00' },
             { name: "Hook Flick", semi: true, date: '2025-11-04T12:00:00' },
             { name: "Inverted Suzy Plus", semi: false, date: '2025-10-25T12:00:00' },
             { name: "Left Front Double Cross", semi: false, date: '2025-11-01T12:00:00' },
@@ -42,8 +42,8 @@ const moveGroups = [
         name: "Advanced Combos",
         moves: [
             { name: "Cord Beat Suzy", semi: false, date: '2025-10-29T12:00:00' },
-            { name: "Double Four Tap V", semi: false, date: '2025-10-29T12:00:00' },
-            { name: "Double Suzy Plus", semi: false, date: '2025-10-22T12:00:00' },
+            { name: "Double Four Tap V", semi: true, date: '2025-10-29T12:00:00' },
+            { name: "Double Suzy Plus", semi: true, date: '2025-10-22T12:00:00' },
             { name: "Left into Right Front Double Cross", semi: false, date: '2025-11-01T12:00:00' },
             { name: "Quadruple Suzy Plus", semi: false, date: '2025-10-25T12:00:00' },
             { name: "Suzy Q Hook Combo Plus", semi: true, date: '2025-10-22T12:00:00' },
