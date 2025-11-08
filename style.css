@@ -112,6 +112,7 @@ body {
 
 /* ---------- Sort Menu ---------- */
 .sort-menu {
+  pointer-events: auto;
   position: absolute;
   top: 60px;
   right: 10px;
@@ -128,6 +129,7 @@ body {
 }
 
 .sort-menu.hidden {
+  pointer-events: none;
   opacity: 0;
   transform: translateX(10%);
 }
@@ -295,6 +297,7 @@ body {
   margin-bottom: 8px;
   transition: background var(--transition);
   cursor: pointer;
+  gap: 0.75rem;
 }
 
 .move-meta {
@@ -372,7 +375,6 @@ body {
 /* Text columns */
 .move-name {
   flex: 1;
-  margin-left: 14px;
   font-size: 1rem;
   font-weight: 400;
   color: var(--text);
