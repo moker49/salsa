@@ -125,26 +125,23 @@ window.addEventListener("DOMContentLoaded", () => {
             </div>
             </h3>
             <div class="group-moves${isCollapsed ? "" : " expanded"}">
-                ${sorted
-                    .map(
-                        m => `
-                    <label class="move-item">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
-                            <span class="checkbox-custom"></span>
-                        </div>
-                        <span class="move-name">${m.name}</span>
-                        <span class="move-date">
-                            ${m.date
-                                ? new Date(m.date).toLocaleDateString("en-US", {
-                                    month: "2-digit",
-                                    day: "2-digit"
-                                })
-                                : "—"}
-                        </span>
-                    </label>`
-                    )
-                    .join("")}
+                ${sorted.map(m => `
+                <label class="move-item">
+                    <div class="checkbox-wrapper">
+                    <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
+                    <span class="checkbox-custom"></span>
+                    </div>
+                    <span class="move-name">${m.name}</span>
+                    <span class="move-meta">
+                    ${m.semi ? '<span class="semi-indicator" title="Can be semi"></span>' : ''}
+                    <span class="move-date">
+                        ${m.date
+                    ? new Date(m.date).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit" })
+                    : "—"}
+                    </span>
+                    </span>
+                </label>
+                `).join("")}
             </div>
         </div>`;
             moveListEl.insertAdjacentHTML("beforeend", groupHTML);

@@ -297,6 +297,23 @@ body {
   cursor: pointer;
 }
 
+.move-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* the tiny semi-circle */
+.semi-indicator {
+  width: 0.6rem;
+  height: 0.3rem;
+  background: var(--muted);
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+  display: inline-block;
+  opacity: 0.8;
+}
+
 /* Checkbox wrapper */
 .checkbox-wrapper {
   position: relative;
@@ -365,7 +382,6 @@ body {
   font-size: 0.8rem;
   color: var(--muted);
   white-space: nowrap;
-  margin-left: 10px;
 }
 
 /* ----- Collapsible Groups ----- */
