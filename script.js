@@ -199,6 +199,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     renderMoveList();
 
+    semiContainer.classList.add("no-transition");
+    requestAnimationFrame(() => {
+        semiContainer.classList.remove("no-transition");
+    });
+
     // --- Save move changes ---
     moveListEl.addEventListener("change", e => {
         if (e.target.matches("input[type='checkbox']")) {

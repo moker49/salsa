@@ -18,6 +18,10 @@
   --transition-material: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)
 }
 
+.no-transition {
+  transition: none !important;
+}
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
