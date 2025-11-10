@@ -563,11 +563,6 @@ body {
   font-weight: 900;
 }
 
-.nav-btn.has-dot::after {
-  top: 0.5rem;
-  right: 5.25rem;
-}
-
 /* ---------- Scrollbar ---------- */
 .tab-content::-webkit-scrollbar {
   width: 6px;

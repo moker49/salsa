@@ -1,46 +1,22 @@
 window.addEventListener("DOMContentLoaded", () => {
-    // --- Build current list of all moves ---
-    const allMoves = moveGroups.flatMap(g => g.moves);
 
-    // --- Load saved moves, clean up, and merge defaults ---
-    let savedMoves = JSON.parse(localStorage.getItem("enabledMoves")) || {};
-    let savedMeta = JSON.parse(localStorage.getItem("moveMeta")) || {};
+    // --- Load user state or start empty (no auto-enables) ---
+    let savedMoves = JSON.parse(localStorage.getItem("enabledMoves"));
     let enabledMoves = {};
-    let newMeta = {}; // we'll rebuild this fresh
 
-    // Keep only valid moves and fill missing ones
-    for (const move of allMoves) {
-        const wasSaved = move.name in savedMoves;
-        const previouslyEnabled = savedMoves[move.name];
-        const prev = savedMeta[move.name] || {};
-
-        const hasDate = !!move.date;
-        const hasCategory = !!move.category;
-
-        // detect if a date or category was newly added
-        const dateWasAdded = hasDate && !prev.date;
-        const categoryWasAdded = hasCategory && !prev.category;
-        const autoEnable = dateWasAdded || categoryWasAdded;
-
-        if (!wasSaved) {
-            // New move: enabled if it already has a date
-            enabledMoves[move.name] = hasDate;
-        } else if (autoEnable) {
-            // Metadata was added since last load → force-enable
-            enabledMoves[move.name] = true;
-        } else {
-            // Otherwise preserve user’s previous choice
-            enabledMoves[move.name] = previouslyEnabled;
-        }
-
-        // Save new metadata snapshot for next comparison
-        newMeta[move.name] = { date: hasDate, category: hasCategory };
+    // First launch: no saved state, nothing pre-enabled
+    if (!savedMoves) {
+        moveGroups.forEach(g => g.moves.forEach(m => {
+            enabledMoves[m.name] = false;
+        }));
+        localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
+    } else {
+        // Existing user → restore exactly what they had before
+        enabledMoves = savedMoves;
     }
 
     // Save the cleaned version back to storage
     localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
-    localStorage.setItem("moveMeta", JSON.stringify(newMeta));
-
 
     const moveListEl = document.getElementById("moveList");
     const randomizeBtn = document.getElementById("randomizeBtn");
@@ -424,7 +400,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const notifTargets = {
         sortBtn: document.getElementById("sortBtn"),
         groupToggleBtn: document.getElementById("groupToggleBtn"),
-        settingsTab: document.querySelector('.nav-btn[data-tab="tab-settings"]')
     };
 
     // Load stored cleared states
@@ -448,7 +423,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // Attach once listeners
     notifTargets.sortBtn?.addEventListener("click", () => clearDot("sortBtn"));
     notifTargets.groupToggleBtn?.addEventListener("click", () => clearDot("groupToggleBtn"));
-    notifTargets.settingsTab?.addEventListener("click", () => clearDot("settingsTab"));
 
     // Initial draw
     updateDots();
