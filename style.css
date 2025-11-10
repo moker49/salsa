@@ -564,6 +564,11 @@ body {
   font-weight: 900;
 }
 
+.nav-btn.has-dot::after {
+  top: 0.5rem;
+  right: 5.25rem;
+}
+
 /* ---------- Scrollbar ---------- */
 .tab-content::-webkit-scrollbar {
   width: 6px;
@@ -642,4 +647,21 @@ input[type="checkbox"],
 .icon-btn, 
 .fab-btn {
   touch-action: manipulation;
+}
+
+/* 🔴 Notification dot */
+.has-dot {
+  position: relative;
+}
+
+.has-dot::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: hsl(0, 70%, 55%);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
 }

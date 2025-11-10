@@ -407,4 +407,37 @@ window.addEventListener("DOMContentLoaded", () => {
             sortMenu.classList.add("hidden");
         }
     });
+
+    // Elements that get a one-time dot
+    const notifTargets = {
+        sortBtn: document.getElementById("sortBtn"),
+        groupToggleBtn: document.getElementById("groupToggleBtn"),
+        settingsTab: document.querySelector('.nav-btn[data-tab="tab-settings"]')
+    };
+
+    // Load stored cleared states
+    const seenState = JSON.parse(localStorage.getItem("seenDots") || "{}");
+
+    // Helper to show/hide dots
+    function updateDots() {
+        Object.entries(notifTargets).forEach(([key, el]) => {
+            if (!seenState[key]) el.classList.add("has-dot");
+            else el.classList.remove("has-dot");
+        });
+    }
+
+    // Click handler that clears the dot
+    function clearDot(key) {
+        seenState[key] = true;
+        localStorage.setItem("seenDots", JSON.stringify(seenState));
+        updateDots();
+    }
+
+    // Attach once listeners
+    notifTargets.sortBtn?.addEventListener("click", () => clearDot("sortBtn"));
+    notifTargets.groupToggleBtn?.addEventListener("click", () => clearDot("groupToggleBtn"));
+    notifTargets.settingsTab?.addEventListener("click", () => clearDot("settingsTab"));
+
+    // Initial draw
+    updateDots();
 });
