@@ -1,17 +1,24 @@
 window.addEventListener("DOMContentLoaded", () => {
 
-    // --- Load user state or start empty (no auto-enables) ---
+    // --- Load or initialize enabled moves ---
     let savedMoves = JSON.parse(localStorage.getItem("enabledMoves"));
     let enabledMoves = {};
 
-    // First launch: no saved state, nothing pre-enabled
     if (!savedMoves) {
-        moveGroups.forEach(g => g.moves.forEach(m => {
-            enabledMoves[m.name] = false;
-        }));
+        const allMoves = moveGroups.flatMap(g => g.moves);
+
+        const sortedByDate = allMoves.sort((a, b) => {
+            if (!a.date && !b.date) return 0;
+            if (!a.date) return 1;  // undated moves go last
+            if (!b.date) return -1;
+            return new Date(b.date) - new Date(a.date);
+        });
+
+        sortedByDate.forEach((m, i) => {
+            enabledMoves[m.name] = i < 4;
+        });
         localStorage.setItem("enabledMoves", JSON.stringify(enabledMoves));
     } else {
-        // Existing user → restore exactly what they had before
         enabledMoves = savedMoves;
     }
 
@@ -75,7 +82,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let showGrouped = localStorage.getItem("showGrouped");
     if (showGrouped === null) {
-        showGrouped = true;
+        showGrouped = false;
     } else {
         showGrouped = showGrouped === "true";
     }
