@@ -320,10 +320,17 @@ window.addEventListener("DOMContentLoaded", () => {
         const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
         const enabledMoves = JSON.parse(localStorage.getItem("enabledMoves")) || {};
 
-        const activeMoves = moveGroups
-            .filter(g => !collapsedGroups[g.name])
-            .flatMap(g => g.moves)
-            .filter(m => enabledMoves[m.name]);
+        let activeMoves = [];
+        if (showGrouped) {
+            activeMoves = moveGroups
+                .filter(g => !collapsedGroups[g.name])
+                .flatMap(g => g.moves)
+                .filter(m => enabledMoves[m.name]);
+        } else {
+            activeMoves = moveGroups
+                .flatMap(g => g.moves)
+                .filter(m => enabledMoves[m.name]);
+        }
 
         const noMovesMsg = "Nothing to spin!";
         const settingsTabBtn = document.querySelector('[data-tab="tab-settings"]');
