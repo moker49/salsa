@@ -274,11 +274,14 @@ window.addEventListener("DOMContentLoaded", () => {
         const group = moveGroups.find(g => g.name === groupName);
         if (!group) return;
 
+        const allChecked = group.moves.every(m => enabledMoves[m.name]);
+        const newState = !allChecked;
+
         group.moves.forEach(m => {
             const cb = document.querySelector(`input[data-move="${m.name}"]`);
             if (cb) {
-                cb.checked = !cb.checked;
-                enabledMoves[m.name] = cb.checked; // ✅ keep the data model in sync
+                cb.checked = newState;
+                enabledMoves[m.name] = newState;
             }
         });
 
