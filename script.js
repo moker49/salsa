@@ -165,26 +165,34 @@ window.addEventListener("DOMContentLoaded", () => {
 
             const groupHTML = `
             <div class="move-group expanded" data-group="all">
-                <h3 class="group-header">All Moves</h3>
-                <div class="group-moves expanded">
-                ${sorted.map(m => `
-                    <label class="move-item">
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
-                        <span class="checkbox-custom"></span>
+                <h3 class="group-header" data-group="all">
+                    All Moves
+                    <div class="group-actions">
+                        <span class="material-symbols-rounded toggle-group" title="Toggle all">select_all</span>
+                        <span class="material-symbols-rounded collapse-icon">expand_less</span>
                     </div>
-                    <span class="move-name">${m.name}</span>
-                    <span class="move-meta">
-                    ${m.semi ? '<span class="semi-indicator" title="Can be semi"></span>' : ''}
-                    <span class="move-date">
-                        ${m.date
+                </h3>
+                <div class="group-moves expanded">
+                    ${sorted.map(m => `
+                        <label class="move-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
+                                <span class="checkbox-custom"></span>
+                            </div>
+                            <span class="move-name">${m.name}</span>
+                            <span class="move-meta">
+                                ${m.semi ? '<span class="semi-indicator" title="Can be semi"></span>' : ''}
+                                <span class="move-date">
+                                    ${m.date
                     ? new Date(m.date).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit" })
                     : "—"}
-                    </span>
-                    </label>
-                `).join("")}
+                                </span>
+                            </span>
+                        </label>
+                    `).join("")}
                 </div>
             </div>`;
+
             moveListEl.insertAdjacentHTML("beforeend", groupHTML);
         }
 
@@ -204,6 +212,7 @@ window.addEventListener("DOMContentLoaded", () => {
             header.addEventListener("click", (e) => {
                 const header = e.target.closest(".group-header");
                 if (!header) return;
+                if (header.dataset.group === "all") return;
 
                 // if click was on the toggle-all icon (or the actions container), do nothing
                 if (e.target.closest(".toggle-group") || e.target.closest(".group-actions")) return;
