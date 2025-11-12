@@ -22,7 +22,7 @@ const moveGroups = [
     {
         name: "Simple Combos",
         moves: [
-            { name: "Angle Braid", semi: false, date: '2025-11-08T12:00:00' },
+            { name: "Angle Braid", semi: true, date: '2025-11-08T12:00:00' },
             { name: "Hot Toe Suzy", semi: true, date: '2025-10-08T12:00:00' },
             { name: "Suzy Cross Suzy", semi: true, date: '2025-10-11T12:00:00' },
             { name: "Suzy Cross Suzy With A Turn", semi: true, date: '2025-10-25T12:00:00' },
@@ -60,7 +60,7 @@ const moveGroups = [
     {
         name: "Women's",
         moves: [
-            { name: "Broken Left Turn", semi: false, date: null },
+            { name: "Broken Left Turn", semi: false, date: '2025-11-11T12:00:00' },
             { name: "Copa", semi: false, date: null },
             { name: "Cross Body Lead (F)", semi: false, date: '2025-10-18T12:00:00' },
             { name: "Inside Left", semi: false, date: '2025-10-25T12:00:00' },
@@ -72,7 +72,7 @@ const moveGroups = [
         moves: [
             { name: "About Face Right Turn", semi: false, date: '2025-11-05T12:00:00' },
             { name: "Axle Right / Axle Left", semi: false, date: '2025-10-22T12:00:00' },
-            { name: "Back Charge", semi: false, date: null },
+            { name: "Back Charge", semi: false, date: '2025-11-11T12:00:00' },
             { name: "CBL (double pump)", semi: false, date: '2025-11-08T12:00:00' },
             { name: "CBL (figure 8)", semi: false, date: '2025-11-05T12:00:00' },
             { name: "CBL (inside left)", semi: false, date: '2025-10-25T12:00:00' },
