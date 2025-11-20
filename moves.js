@@ -72,7 +72,7 @@ const moveGroups = [
     {
         name: "Women's",
         moves: [
-            { name: "Broken Left Turn", semi: false, date: '2025-11-11T1:00:00' },
+            { name: "Broken Left Turn", semi: false, date: '2025-11-11T12:00:00' },
             { name: "Copa", semi: false, date: null },
             { name: "Cross Body Lead (F)", semi: false, date: '2025-10-18T12:00:00' },
             { name: "Inside Left", semi: false, date: '2025-10-25T12:00:00' },
