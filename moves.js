@@ -85,6 +85,7 @@ const moveGroups = [
             { name: "About Face Right Turn", semi: false, date: '2025-11-05T12:00:00' },
             { name: "Axle Right / Axle Left", semi: false, date: '2025-10-22T12:00:00' },
             { name: "Back Charge", semi: false, date: '2025-11-11T12:00:00' },
+            { name: "CBL (back charge)", semi: false, date: '2025-11-19T12:00:00' },
             { name: "CBL (double pump)", semi: false, date: '2025-11-08T12:00:00' },
             { name: "CBL (figure 8)", semi: false, date: '2025-11-05T12:00:00' },
             { name: "CBL (inside left)", semi: false, date: '2025-10-25T12:00:00' },
