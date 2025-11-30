@@ -8,7 +8,6 @@ const moveGroups = [
             { name: "Braid", semi: false, date: '2025-11-08T12:00:00' },
             { name: "Cord Beat Crossover", semi: false, date: '2025-10-29T12:00:00' },
             { name: "Double Hunts Point", semi: false, date: '2025-11-25T12:00:00' },
-            { name: "Double Left Flare", semi: false, date: '2025-11-29T12:00:00' },
             { name: "Forward Crossover", semi: false, date: '2025-11-15T12:00:00' },
             { name: "Four Corners", semi: false, date: '2025-10-22T12:00:00' },
             { name: "Front Double Basic", semi: false, date: '2025-10-01T12:00:00' },
@@ -31,6 +30,7 @@ const moveGroups = [
         name: "Simple Combos",
         moves: [
             { name: "Angle Braid", semi: true, date: '2025-11-08T12:00:00' },
+            { name: "Double Left Flare", semi: false, date: '2025-11-29T12:00:00' },
             { name: "Double Tap Crossover Slide", semi: true, date: '2025-11-19T12:00:00' },
             { name: "Double Tap Crossover Slide Plus", semi: true, date: '2025-11-22T12:00:00' },
             { name: "Forward Crossover Suzy Q", semi: false, date: '2025-11-15T12:00:00' },
