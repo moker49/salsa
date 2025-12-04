@@ -24,6 +24,7 @@ const moveGroups = [
             { name: "Side Triplet", semi: true, date: '2025-11-05T12:00:00' },
             { name: "Suzy Q", semi: true, date: '2025-10-04T12:00:00' },
             { name: "Switch Timing", semi: false, date: '2025-10-18T12:00:00' },
+            { name: "Syncopated Front Double Cross", semi: true, date: '2025-12-03T12:00:00' },
         ]
     },
     {
@@ -58,6 +59,7 @@ const moveGroups = [
             { name: "Suzy Q Plus", semi: true, date: '2025-10-11T12:00:00' },
             { name: "Symmetrical Angle Suzy", semi: false, date: '2025-11-15T12:00:00' },
             { name: "Symmetrical Angle Back", semi: false, date: '2025-11-15T12:00:00' },
+            { name: "Syncopated Front Double Cross Turn Combo", semi: false, date: '2025-12-03T12:00:00' },
         ]
     },
     {
@@ -65,6 +67,8 @@ const moveGroups = [
         moves: [
             { name: "Cord Beat Suzy", semi: false, date: '2025-10-29T12:00:00' },
             { name: "Double Four Tap V", semi: true, date: '2025-10-29T12:00:00' },
+            { name: "Double Hot Toe Combo", semi: false, date: '2025-12-02T12:00:00' },
+            { name: "Double Hot Toe Combo With Reverse", semi: false, date: '2025-12-02T12:00:00' },
             { name: "Double Suzy Plus", semi: true, date: '2025-10-22T12:00:00' },
             { name: "Forward Crossover Left Front Double Cross Suzy Q", semi: false, date: '2025-11-15T12:00:00' },
             { name: "Left into Right Front Double Cross", semi: true, date: '2025-11-01T12:00:00' },
@@ -111,6 +115,7 @@ const moveGroups = [
             { name: "Broken Left (1A)", semi: false, date: '2025-11-25T12:00:00' },
             { name: "Broken Left (2)", semi: false, date: '2025-11-29T12:00:00' },
             { name: "Broken Left (3)", semi: false, date: '2025-11-29T12:00:00' },
+            { name: "Broken Left (4)", semi: false, date: '2025-12-06T12:00:00' },
             { name: "CBL (back charge)", semi: false, date: '2025-11-19T12:00:00' },
             { name: "CBL (double pump)", semi: false, date: '2025-11-08T12:00:00' },
             { name: "CBL (figure 8)", semi: false, date: '2025-11-05T12:00:00' },
@@ -128,8 +133,6 @@ const moveGroups = [
             { name: "Lateral Cutaway", semi: false, date: null },
             { name: "Outside Cutaway", semi: false, date: null },
             { name: "Slave", semi: false, date: null },
-            { name: "Syncopated Front Double Cross", semi: false, date: null },
-            { name: "Syncopated Front Double Cross Turn Combo", semi: false, date: null },
         ]
     },
 ];
