@@ -59,7 +59,7 @@ const moveGroups = [
             { name: "Suzy Q Plus", semi: true, date: '2025-10-11T12:00:00' },
             { name: "Symmetrical Angle Suzy", semi: false, date: '2025-11-15T12:00:00' },
             { name: "Symmetrical Angle Back", semi: false, date: '2025-11-15T12:00:00' },
-            { name: "Syncopated Front Double Cross Turn Combo", semi: false, date: '2025-12-03T12:00:00' },
+            { name: "Syncopated Angle Back", semi: false, date: '2025-12-06T12:00:00' },
         ]
     },
     {
@@ -75,6 +75,7 @@ const moveGroups = [
             { name: "Quadruple Suzy Plus", semi: false, date: '2025-10-25T12:00:00' },
             { name: "Reverse Crossover Left Front Double Cross Suzy Q", semi: false, date: '2025-11-18T12:00:00' },
             { name: "Suzy Q Hook Combo Plus", semi: true, date: '2025-10-22T12:00:00' },
+            { name: "Syncopated Front Double Cross Turn Combo", semi: false, date: '2025-12-03T12:00:00' },
             { name: "Triple Four Tap V", semi: false, date: '2025-11-01T12:00:00' },
             { name: "Triple Suzy Plus", semi: false, date: '2025-10-22T12:00:00' },
             { name: "Turn Combo", semi: true, date: '2025-10-15T12:00:00' },
