@@ -6,6 +6,8 @@ const moveGroups = [
             { name: "Angle Suzy", semi: false, date: '2025-11-08T12:00:00' },
             { name: "Basic", semi: false, date: '2025-10-01T12:00:00' },
             { name: "Braid", semi: false, date: '2025-11-08T12:00:00' },
+            { name: "Cha Cha Cha Basic", semi: false, date: '2025-12-17T12:00:00' },
+            { name: "Cha Cha Cha Front Double Basic", semi: false, date: '2025-12-17T12:00:00' },
             { name: "Cord Beat Crossover", semi: false, date: '2025-10-29T12:00:00' },
             { name: "Double Hunts Point", semi: false, date: '2025-11-25T12:00:00' },
             { name: "Forward Crossover", semi: false, date: '2025-11-15T12:00:00' },
@@ -31,7 +33,8 @@ const moveGroups = [
         name: "Simple Combos",
         moves: [
             { name: "Angle Braid", semi: true, date: '2025-11-08T12:00:00' },
-            { name: "Double Left Flare", semi: false, date: '2025-11-29T12:00:00' },
+            { name: "Cha Cha Cha Suzzy Q", semi: false, date: '2025-12-17T12:00:00' },
+            { name: "Double Left Flare", semi: true, date: '2025-11-29T12:00:00' },
             { name: "Double Tap Crossover Slide", semi: true, date: '2025-11-19T12:00:00' },
             { name: "Double Tap Crossover Slide Plus", semi: true, date: '2025-11-22T12:00:00' },
             { name: "Forward Crossover Suzy Q", semi: false, date: '2025-11-15T12:00:00' },
@@ -53,7 +56,7 @@ const moveGroups = [
             { name: "Downtown with a Turn", semi: true, date: '2025-10-25T12:00:00' },
             { name: "Four Tap V", semi: true, date: '2025-10-29T12:00:00' },
             { name: "Hook Flick", semi: true, date: '2025-11-04T12:00:00' },
-            { name: "Inverted Suzy Plus", semi: false, date: '2025-10-25T12:00:00' },
+            { name: "Inverted Suzy Plus", semi: true, date: '2025-10-25T12:00:00' },
             { name: "Left Front Double Cross", semi: false, date: '2025-11-01T12:00:00' },
             { name: "Right Front Double Cross", semi: false, date: '2025-11-01T12:00:00' },
             { name: "Suzy Q Plus", semi: true, date: '2025-10-11T12:00:00' },
@@ -66,6 +69,7 @@ const moveGroups = [
     {
         name: "Advanced Combos",
         moves: [
+            { name: "Cha Cha Cha Suzzy Q Crossover", semi: false, date: '2025-12-17T12:00:00' },
             { name: "Cord Beat Suzy", semi: false, date: '2025-10-29T12:00:00' },
             { name: "Double Four Tap V", semi: true, date: '2025-10-29T12:00:00' },
             { name: "Double Hot Toe Combo", semi: false, date: '2025-12-02T12:00:00' },
@@ -125,6 +129,7 @@ const moveGroups = [
             { name: "CBL (half right back charge)", semi: false, date: '2025-11-22T12:00:00' },
             { name: "CBL (inside left)", semi: false, date: '2025-10-25T12:00:00' },
             { name: "CBL (two hands)", semi: false, date: '2025-11-15T12:00:00' },
+            { name: "CBL (?)", semi: false, date: '2025-12-17T12:00:00' },
         ]
     },
     {
