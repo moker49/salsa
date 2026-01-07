@@ -5,9 +5,11 @@ window.addEventListener("DOMContentLoaded", () => {
     let enabledMoves = {};
 
     if (!savedMoves) {
-        const allMoves = moveGroups.flatMap(g => g.moves);
+        // ensure moveGroups and their moves arrays exist, and filter out any invalid entries
+        const allMoves = (Array.isArray(moveGroups) ? moveGroups.flatMap(g => Array.isArray(g.moves) ? g.moves : []) : []);
+        const validMoves = allMoves.filter(m => m && typeof m.name === 'string');
 
-        const sortedByDate = allMoves.sort((a, b) => {
+        const sortedByDate = validMoves.sort((a, b) => {
             if (!a.date && !b.date) return 0;
             if (!a.date) return 1;  // undated moves go last
             if (!b.date) return -1;
@@ -191,9 +193,10 @@ window.addEventListener("DOMContentLoaded", () => {
             groupsToRender.forEach(group => {
                 const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
                 const isAdvanced = group.name && group.name.toLowerCase().includes("advanced");
+                const isShines = group.name && group.name.toLowerCase().includes("shines");
 
                 if (!(group.name in collapsedGroups)) {
-                    collapsedGroups[group.name] = !isAdvanced; // collapsed unless advanced
+                    collapsedGroups[group.name] = (!isAdvanced && !isShines); // collapsed unless advanced
                     localStorage.setItem("collapsedGroups", JSON.stringify(collapsedGroups));
                 }
 

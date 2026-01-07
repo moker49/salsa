@@ -160,7 +160,7 @@ const moveGroups = [
                     { name: "Agua", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Broken Left Turn (Pencil)", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Front Double Double", semi: false, date: '2026-01-03T12:00:00' },
-                    { name: "Double Left Flare - 585 Spiral - Cross Tap Lunge", semi: false, date: '2026-01-06T12:00:00' },
+                    { name: "Double Left Flare</br>585 Spiral</br>Cross Tap Lunge", semi: false, date: '2026-01-06T12:00:00' },
                 ]
             },
 
