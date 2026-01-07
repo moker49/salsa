@@ -123,6 +123,46 @@ body {
   visibility: hidden;
 }
 
+/* ---------- Level Menu ---------- */
+.level-menu {
+  pointer-events: auto;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  background: var(--menu);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all var(--transition);
+  z-index: 150;
+}
+
+.level-menu.hidden {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-10%);
+}
+
+/* Overlay for dimming background when menus are open */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.33);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  z-index: 140;
+}
+
+.overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* ---------- Sort Menu ---------- */
 .sort-menu {
   pointer-events: auto;

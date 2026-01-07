@@ -31,6 +31,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const sortBtn = document.getElementById("sortBtn");
     const sortMenu = document.getElementById("sortMenu");
     const levelMenu = document.getElementById("levelMenu");
+    const overlay = document.getElementById('overlay');
     const menuBtn = document.getElementById("menuBtn");
     const semiButtons = document.querySelectorAll(".semi-toggle-group .md3-segment");
     const semiContainer = document.querySelector(".semi-toggle-container");
@@ -69,8 +70,8 @@ window.addEventListener("DOMContentLoaded", () => {
     // store the top-level group name (e.g., "Beginners", "AB1")
     let currentLevel = localStorage.getItem("currentLevel");
     if (!currentLevel) {
-        // default to the first moveGroups name
-        currentLevel = (moveGroups && moveGroups.length) ? moveGroups[0].name : null;
+        // default to the last moveGroups name
+        currentLevel = (moveGroups && moveGroups.length) ? moveGroups[moveGroups.length - 1].name : null;
         if (currentLevel) localStorage.setItem("currentLevel", currentLevel);
     }
 
@@ -135,6 +136,14 @@ window.addEventListener("DOMContentLoaded", () => {
     menuBtn.addEventListener('click', e => {
         e.stopPropagation();
         levelMenu.classList.toggle('hidden');
+        // toggle overlay
+        if (!levelMenu.classList.contains('hidden')) {
+            overlay.classList.add('visible');
+            overlay.classList.remove('hidden');
+        } else {
+            overlay.classList.remove('visible');
+            overlay.classList.add('hidden');
+        }
         // set radio checked state
         document.querySelectorAll('input[name="levelOption"]').forEach(input => {
             input.checked = input.value === currentLevel;
@@ -145,7 +154,20 @@ window.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('click', e => {
         if (!levelMenu.classList.contains('hidden')) {
             levelMenu.classList.add('hidden');
+            overlay.classList.remove('visible');
+            overlay.classList.add('hidden');
         }
+        if (!sortMenu.classList.contains('hidden')) {
+            sortMenu.classList.add('hidden');
+        }
+    });
+
+    // Clicking overlay should close menus
+    overlay.addEventListener('click', e => {
+        levelMenu.classList.add('hidden');
+        overlay.classList.remove('visible');
+        overlay.classList.add('hidden');
+        sortMenu.classList.add('hidden');
     });
 
     // Handle level selection
