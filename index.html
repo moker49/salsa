@@ -22,10 +22,10 @@
                 <h1 id="topbarTitle">Salsa Wheel</h1>
             </div>
             <div class="topbar-button-group">
-                <button id="sortBtn" class="topbar-btn">
+                <button id="sortBtn" class="topbar-btn" style="visibility: visible;">
                     <span class="material-symbols-rounded">sort</span>
                 </button>
-                <button id="groupToggleBtn" class="topbar-btn" title="Toggle grouping">
+                <button id="groupToggleBtn" class="topbar-btn" title="Toggle grouping" style="visibility: visible;">
                     <span class="material-symbols-rounded">format_list_bulleted</span>
                 </button>
             </div>
@@ -49,11 +49,10 @@
             </label>
         </div>
 
-        <!-- Level selection menu (populated dynamically) -->
         <div id="levelMenu" class="level-menu hidden"></div>
         <div id="overlay" class="overlay hidden"></div>
 
-        <section id="tab-randomizer" class="tab-content active">
+        <section id="tab-randomizer" class="tab-content">
             <div class="randomizer-content">
                 <div id="currentMove" class="move-display">Press the button!</div>
             </div>
@@ -62,7 +61,7 @@
             </button>
         </section>
 
-        <section id="tab-settings" class="tab-content">
+        <section id="tab-settings" class="tab-content active">
             <div class="inner-content">
                 <div id="moveList"></div>
             </div>
@@ -82,11 +81,11 @@
             </div>
 
             <nav class="navbar">
-                <button class="nav-btn active" data-tab="tab-randomizer">
+                <button class="nav-btn" data-tab="tab-randomizer">
                     <span class="material-symbols-rounded">speed</span>
                     <p class="nav-label">Spin</p>
                 </button>
-                <button class="nav-btn" data-tab="tab-settings">
+                <button class="nav-btn active" data-tab="tab-settings">
                     <span class="material-symbols-rounded">podiatry</span>
                     <p class="nav-label">Moves</p>
                 </button>
