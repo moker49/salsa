@@ -30,6 +30,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const currentMoveEl = document.getElementById("currentMove");
     const sortBtn = document.getElementById("sortBtn");
     const sortMenu = document.getElementById("sortMenu");
+    const levelMenu = document.getElementById("levelMenu");
+    const menuBtn = document.getElementById("menuBtn");
     const semiButtons = document.querySelectorAll(".semi-toggle-group .md3-segment");
     const semiContainer = document.querySelector(".semi-toggle-container");
     const groupToggleBtn = document.getElementById("groupToggleBtn");
@@ -63,6 +65,41 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let currentSort = localStorage.getItem("sortMode") || "dateDesc";
 
+    // --- Level selection state ---
+    // store the top-level group name (e.g., "Beginners", "AB1")
+    let currentLevel = localStorage.getItem("currentLevel");
+    if (!currentLevel) {
+        // default to the first moveGroups name
+        currentLevel = (moveGroups && moveGroups.length) ? moveGroups[0].name : null;
+        if (currentLevel) localStorage.setItem("currentLevel", currentLevel);
+    }
+
+    // Helper to get the groups for the currently selected level
+    function getActiveMoveGroups() {
+        if (!currentLevel) return moveGroups;
+        const lvl = moveGroups.find(g => g.name === currentLevel);
+        if (!lvl) return moveGroups;
+        // if the level contains categories, return those categories as groups
+        if (Array.isArray(lvl.categories)) {
+            return lvl.categories.map(cat => ({ name: cat.name, moves: cat.moves }));
+        }
+        return moveGroups;
+    }
+
+    // Populate level menu similar to sort menu
+    function populateLevelMenu() {
+        if (!levelMenu) return;
+        levelMenu.innerHTML = "";
+        moveGroups.forEach(mg => {
+            const id = `level-${mg.name.replace(/\s+/g, "-")}`;
+            const checked = mg.name === currentLevel ? 'checked' : '';
+            const label = `\n            <label class="sort-option">\n                <input type="radio" name="levelOption" value="${mg.name}" ${checked}>\n                <span class="radio-custom"></span>\n                <span class="sort-label">${mg.name}</span>\n            </label>\n            `;
+            levelMenu.insertAdjacentHTML('beforeend', label);
+        });
+    }
+
+    populateLevelMenu();
+
     // --- Semi toggle state management ---
     let semiEnabled = localStorage.getItem("semiEnabled") || "false";
 
@@ -94,18 +131,42 @@ window.addEventListener("DOMContentLoaded", () => {
         // updateGroupToggleIcon();
     });
 
-    function updateGroupToggleIcon() {
-        const icon = groupToggleBtn.querySelector(".material-symbols-rounded");
-        icon.textContent = showGrouped ? "format_list_bulleted" : "table_rows";
-        groupToggleBtn.title = showGrouped ? "Show all moves" : "Show grouped";
-    }
+    // Menu (hamburger) toggles the level menu, mirroring sort menu behavior
+    menuBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        levelMenu.classList.toggle('hidden');
+        // set radio checked state
+        document.querySelectorAll('input[name="levelOption"]').forEach(input => {
+            input.checked = input.value === currentLevel;
+        });
+    });
+
+    // Close level menu when clicking elsewhere
+    document.addEventListener('click', e => {
+        if (!levelMenu.classList.contains('hidden')) {
+            levelMenu.classList.add('hidden');
+        }
+    });
+
+    // Handle level selection
+    levelMenu.addEventListener('change', e => {
+        if (e.target.matches('input[name="levelOption"]')) {
+            currentLevel = e.target.value;
+            localStorage.setItem('currentLevel', currentLevel);
+            populateLevelMenu();
+            renderMoveList();
+            levelMenu.classList.add('hidden');
+        }
+    });
 
     // --- Render the move list ---
     function renderMoveList() {
         moveListEl.innerHTML = "";
 
+        const groupsToRender = getActiveMoveGroups();
+
         if (showGrouped) {
-            moveGroups.forEach(group => {
+            groupsToRender.forEach(group => {
                 const collapsedGroups = JSON.parse(localStorage.getItem("collapsedGroups")) || {};
                 const isAdvanced = group.name && group.name.toLowerCase().includes("advanced");
 
@@ -149,7 +210,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 moveListEl.insertAdjacentHTML("beforeend", groupHTML);
             });
         } else {
-            const allMoves = moveGroups.flatMap(g => g.moves);
+            const allMoves = getActiveMoveGroups().flatMap(g => g.moves);
             const sorted = [...allMoves].sort(sortModes[currentSort].fn);
 
             const groupHTML = `
@@ -328,13 +389,14 @@ window.addEventListener("DOMContentLoaded", () => {
         const enabledMoves = JSON.parse(localStorage.getItem("enabledMoves")) || {};
 
         let activeMoves = [];
+        const groupsForRandom = getActiveMoveGroups();
         if (showGrouped) {
-            activeMoves = moveGroups
+            activeMoves = groupsForRandom
                 .filter(g => !collapsedGroups[g.name])
                 .flatMap(g => g.moves)
                 .filter(m => enabledMoves[m.name]);
         } else {
-            activeMoves = moveGroups
+            activeMoves = groupsForRandom
                 .flatMap(g => g.moves)
                 .filter(m => enabledMoves[m.name]);
         }
@@ -412,6 +474,13 @@ window.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.sort-option input').forEach(input => {
             input.checked = input.value === currentSort;
         });
+    });
+
+    // Level menu toggle (handled by hamburger) pre-fills radios when opened
+    document.addEventListener("click", e => {
+        if (!sortMenu.classList.contains("hidden")) {
+            sortMenu.classList.add("hidden");
+        }
     });
 
     // --- Sort option selection ---
