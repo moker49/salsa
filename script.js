@@ -1,3 +1,6 @@
+const HIDDEN = "hidden";
+const VISIBLE = "visible";
+
 window.addEventListener("DOMContentLoaded", () => {
 
     // --- Load or initialize enabled moves ---
@@ -44,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
         "Spin it up!",
         "Give it a spin!",
     ];
-    currentMoveEl.textContent = introMessages[Math.floor(Math.random() * introMessages.length)];
+    currentMoveEl.innerHTML = sanitizeAllowBr(introMessages[Math.floor(Math.random() * introMessages.length)]);
 
     const sortModes = {
         alphaAsc: { label: "Alphabetical", fn: (a, b) => a.name.localeCompare(b.name) },
@@ -433,7 +436,7 @@ window.addEventListener("DOMContentLoaded", () => {
             if (currentMoveEl.textContent === noMovesMsg) {
                 pulseHighlight(settingsTabBtn);
             } else {
-                currentMoveEl.textContent = noMovesMsg;
+                currentMoveEl.innerHTML = sanitizeAllowBr(noMovesMsg);
             }
             return;
         }
@@ -457,7 +460,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         currentMoveEl.style.opacity = 0;
         setTimeout(() => {
-            currentMoveEl.textContent = displayName;
+            currentMoveEl.innerHTML = sanitizeAllowBr(displayName);
             currentMoveEl.style.opacity = 1;
         }, 150);
     });
@@ -480,14 +483,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // visibility
             if (tab === "tab-settings") {
-                sortBtn.style.visibility = "visible";
-                groupToggleBtn.style.visibility = "visible";
-                semiContainer.classList.add("visible");
+                sortBtn.style.visibility = VISIBLE;
+                groupToggleBtn.style.visibility = VISIBLE;
+                semiContainer.classList.add(VISIBLE);
             } else {
-                sortBtn.style.visibility = "hidden";
-                sortMenu.classList.add("hidden");
-                groupToggleBtn.style.visibility = "hidden";
-                semiContainer.classList.remove("visible");
+                sortBtn.style.visibility = HIDDEN;
+                sortMenu.classList.add(HIDDEN);
+                groupToggleBtn.style.visibility = HIDDEN;
+                semiContainer.classList.remove(VISIBLE);
             }
         });
     });
@@ -495,7 +498,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // --- Sort menu toggle ---
     sortBtn.addEventListener("click", e => {
         e.stopPropagation();
-        sortMenu.classList.toggle("hidden");
+        sortMenu.classList.toggle(HIDDEN);
         document.querySelectorAll('.sort-option input').forEach(input => {
             input.checked = input.value === currentSort;
         });
@@ -503,8 +506,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Level menu toggle (handled by hamburger) pre-fills radios when opened
     document.addEventListener("click", e => {
-        if (!sortMenu.classList.contains("hidden")) {
-            sortMenu.classList.add("hidden");
+        if (!sortMenu.classList.contains(HIDDEN)) {
+            sortMenu.classList.add(HIDDEN);
         }
     });
 
@@ -514,13 +517,13 @@ window.addEventListener("DOMContentLoaded", () => {
             currentSort = e.target.value;
             localStorage.setItem("sortMode", currentSort);
             renderMoveList();
-            sortMenu.classList.add("hidden");
+            sortMenu.classList.add(HIDDEN);
         }
     });
 
     document.addEventListener("click", e => {
-        if (!sortMenu.classList.contains("hidden")) {
-            sortMenu.classList.add("hidden");
+        if (!sortMenu.classList.contains(HIDDEN)) {
+            sortMenu.classList.add(HIDDEN);
         }
     });
 
@@ -555,3 +558,24 @@ window.addEventListener("DOMContentLoaded", () => {
     // Initial draw
     updateDots();
 });
+
+// sanitizer to allow <br> in move names while escaping other HTML
+function sanitizeAllowBr(s) {
+    if (!s) return '';
+    let out = String(s);
+
+    // Normalize possible already-encoded or literal <br> variants to a token
+    out = out.replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '___BR___'); // &amp;lt;br&amp;gt;
+    out = out.replace(/&lt;br\s*\/?&gt;/gi, '___BR___');      // &lt;br&gt;
+    out = out.replace(/<br\s*\/?\>/gi, '___BR___');          // literal <br>
+
+    // Escape everything else
+    out = out.replace(/&/g, '&amp;')
+             .replace(/</g, '&lt;')
+             .replace(/>/g, '&gt;');
+
+    // Restore the allowed token back to an actual <br>
+    out = out.replace(/___BR___/g, '<br>');
+
+    return out;
+}
