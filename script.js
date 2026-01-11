@@ -125,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let showGrouped = localStorage.getItem("showGrouped");
     if (showGrouped === null) {
-        showGrouped = false;
+        showGrouped = true;
     } else {
         showGrouped = showGrouped === "true";
     }
