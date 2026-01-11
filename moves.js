@@ -160,8 +160,9 @@ const moveGroups = [
                     { name: "Agua", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Broken Left Turn (Pencil)", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Front Double Double", semi: false, date: '2026-01-03T12:00:00' },
-                    { name: "Double Left Flare</br>585 Spiral</br>Cross Tap Lunge<br>Syncopated Four Corners", semi: false, date: '2026-01-06T12:00:00' },
+                    { name: "Double Left Flare<br>585 Spiral<br>Cross Tap Lunge<br>Syncopated Four Corners", semi: false, date: '2026-01-06T12:00:00' },
                     { name: "Syncopated Hot Toe", semi: false, date: '2026-01-08T12:00:00' },
+                    { name: "Descending Trap Turn", semi: false, date: '2026-01-10T12:00:00' },
                 ]
             },
 
