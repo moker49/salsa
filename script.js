@@ -485,12 +485,12 @@ window.addEventListener("DOMContentLoaded", () => {
             if (tab === "tab-settings") {
                 sortBtn.style.visibility = VISIBLE;
                 groupToggleBtn.style.visibility = VISIBLE;
-                semiContainer.classList.add(VISIBLE);
+                semiContainer.classList.remove(VISIBLE);
             } else {
                 sortBtn.style.visibility = HIDDEN;
                 sortMenu.classList.add(HIDDEN);
                 groupToggleBtn.style.visibility = HIDDEN;
-                semiContainer.classList.remove(VISIBLE);
+                semiContainer.classList.add(VISIBLE);
             }
         });
     });
