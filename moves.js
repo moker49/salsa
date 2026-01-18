@@ -160,17 +160,25 @@ const moveGroups = [
                     { name: "Agua", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Broken Left Turn (Pencil)", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Front Double Double", semi: false, date: '2026-01-03T12:00:00' },
-                    { name: "Double Left Flare<br>585 Spiral<br>Cross Tap Lunge<br>Syncopated Four Corners", semi: false, date: '2026-01-06T12:00:00' },
+                    { name: "Double Left Flare", semi: false, date: '2026-01-06T12:00:00' },
+                    { name: "585 Spiral", semi: false, date: '2026-01-06T12:00:00' },
+                    { name: "Cross Tap Lunge", semi: false, date: '2026-01-06T12:00:00' },
+                    { name: "Syncopated Four Corners", semi: false, date: '2026-01-06T12:00:00' },
                     { name: "Syncopated Hot Toe", semi: false, date: '2026-01-08T12:00:00' },
                     { name: "Descending Trap Turn", semi: false, date: '2026-01-10T12:00:00' },
+                    { name: "Angle Slave Freeze", semi: true, date: '2026-01-13T12:00:00' },
+                    { name: "Reverse Crossover Slide<br>Turn Combo Left", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Agua<br>Double Left Flare<br>585 Spiral<br>Cross Tap Lunge<br>Front Double Double<br>Descending Trap Turn<br>Broken Left Turn (Pencil)<br>Angle Slave Freeze", semi: false, date: '2026-01-15T12:00:00' },
                 ]
             },
 
             {
                 name: "Partner Work",
                 moves: [
-                    { name: "Underhanded Curfew", semi: false, date: '2026-01-03T12:00:00' },
+                    { name: "Underhanded Curfew (Back Slide)", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Underhanded Curfew (Hammerlocks)", semi: false, date: '2026-01-08T12:00:00' },
+                    { name: "Shoulder Lunge Broken Left Curfew (Switch)", semi: false, date: '2026-01-13T12:00:00' },
+                    { name: "Shoulder Lunge Broken Left Curfew (Same)", semi: false, date: '2026-01-15T12:00:00' },
                 ]
             }
         ]
