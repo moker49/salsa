@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
         "Spin it up!",
         "Give it a spin!",
     ];
-    currentMoveEl.innerHTML = sanitizeAllowBr(introMessages[Math.floor(Math.random() * introMessages.length)]);
+    currentMoveEl.innerHTML = replaceCommas(introMessages[Math.floor(Math.random() * introMessages.length)]);
 
     const sortModes = {
         alphaAsc: { label: "Alphabetical", fn: (a, b) => a.name.localeCompare(b.name) },
@@ -222,7 +222,7 @@ window.addEventListener("DOMContentLoaded", () => {
                             <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
                             <span class="checkbox-custom"></span>
                             </div>
-                            <span class="move-name">${m.name}</span>
+                            <span class="move-name">${replaceCommas(m.name)}</span>
                             <span class="move-meta">
                             ${m.semi ? '<span class="semi-indicator" title="Can be semi"></span>' : ''}
                             <span class="move-date">
@@ -257,7 +257,7 @@ window.addEventListener("DOMContentLoaded", () => {
                                 <input type="checkbox" data-move="${m.name}" ${enabledMoves[m.name] ? "checked" : ""}>
                                 <span class="checkbox-custom"></span>
                             </div>
-                            <span class="move-name">${m.name}</span>
+                            <span class="move-name">${replaceCommas(m.name)}</span>
                             <span class="move-meta">
                                 ${m.semi ? '<span class="semi-indicator" title="Can be semi"></span>' : ''}
                                 <span class="move-date">
@@ -436,7 +436,7 @@ window.addEventListener("DOMContentLoaded", () => {
             if (currentMoveEl.textContent === noMovesMsg) {
                 pulseHighlight(settingsTabBtn);
             } else {
-                currentMoveEl.innerHTML = sanitizeAllowBr(noMovesMsg);
+                currentMoveEl.innerHTML = replaceCommas(noMovesMsg);
             }
             return;
         }
@@ -460,7 +460,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         currentMoveEl.style.opacity = 0;
         setTimeout(() => {
-            currentMoveEl.innerHTML = sanitizeAllowBr(displayName);
+            currentMoveEl.innerHTML = replaceCommas(displayName);
             currentMoveEl.style.opacity = 1;
         }, 150);
     });
@@ -559,23 +559,20 @@ window.addEventListener("DOMContentLoaded", () => {
     updateDots();
 });
 
-// sanitizer to allow <br> in move names while escaping other HTML
-function sanitizeAllowBr(s) {
-    if (!s) return '';
-    let out = String(s);
 
-    // Normalize possible already-encoded or literal <br> variants to a token
-    out = out.replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '___BR___'); // &amp;lt;br&amp;gt;
-    out = out.replace(/&lt;br\s*\/?&gt;/gi, '___BR___');      // &lt;br&gt;
-    out = out.replace(/<br\s*\/?\>/gi, '___BR___');          // literal <br>
+function replaceCommas(s) {
+    if (s == null) return '';
+    // join arrays just in case
+    if (Array.isArray(s)) s = s.join(', ');
+    s = String(s);
 
-    // Escape everything else
-    out = out.replace(/&/g, '&amp;')
-             .replace(/</g, '&lt;')
-             .replace(/>/g, '&gt;');
+    // decode HTML entities (handles &#44; and &comma; and similar)
+    const d = document.createElement('textarea');
+    d.innerHTML = s;
+    s = d.value || d.textContent || s;
 
-    // Restore the allowed token back to an actual <br>
-    out = out.replace(/___BR___/g, '<br>');
-
-    return out;
+    // replace ASCII and fullwidth/comma variants with <br>
+    const result = s.replace(/[,，\uFF0C]\s*/g, '<br>');
+    // console.log('replaceCommas()', { input: s, output: result });
+    return result;
 }

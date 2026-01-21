@@ -112,7 +112,7 @@ const moveGroups = [
                 name: "Men's",
                 moves: [
                     { name: "About Face Right Turn", semi: false, date: '2025-11-05T12:00:00' },
-                    { name: "Axle Right / Axle Left", semi: false, date: '2025-10-22T12:00:00' },
+                    { name: "Axle Right,Axle Left", semi: false, date: '2025-10-22T12:00:00' },
                     { name: "Back Charge", semi: false, date: '2025-11-11T12:00:00' },
                     { name: "Cross Body Lead (M)", semi: false, date: '2025-10-18T12:00:00' },
                     { name: "Full Axle Right Turn", semi: false, date: '2025-10-22T12:00:00' },
@@ -158,7 +158,7 @@ const moveGroups = [
                 name: "Shines",
                 moves: [
                     { name: "Agua", semi: false, date: '2026-01-03T12:00:00' },
-                    { name: "Broken Left Turn (Pencil)", semi: false, date: '2026-01-03T12:00:00' },
+                    { name: "Broken Left (Pencil)", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Front Double Double", semi: false, date: '2026-01-03T12:00:00' },
                     { name: "Double Left Flare", semi: false, date: '2026-01-06T12:00:00' },
                     { name: "585 Spiral", semi: false, date: '2026-01-06T12:00:00' },
@@ -167,18 +167,21 @@ const moveGroups = [
                     { name: "Syncopated Hot Toe", semi: false, date: '2026-01-08T12:00:00' },
                     { name: "Descending Trap Turn", semi: false, date: '2026-01-10T12:00:00' },
                     { name: "Angle Slave Freeze", semi: true, date: '2026-01-13T12:00:00' },
-                    { name: "Reverse Crossover Slide<br>Turn Combo Left", semi: false, date: '2026-01-15T12:00:00' },
-                    { name: "Agua<br>Double Left Flare<br>585 Spiral<br>Cross Tap Lunge<br>Front Double Double<br>Descending Trap Turn<br>Broken Left Turn (Pencil)<br>Angle Slave Freeze", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Reverse Crossover Slide,Turn Combo Left", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Agua,Double Left Flare,585 Spiral,Cross Tap Lunge,Front Double Double,Descending Trap Turn,Broken Left Turn (Pencil),Angle Slave Freeze", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Reverse Crossover Tap Suzzy,(aka Look Back At It)", semi: false, date: '2026-01-20T12:00:00' },
+                    { name: "Mayday", semi: false, date: '2026-01-20T12:00:00' },
                 ]
             },
 
             {
-                name: "Partner Work",
+                name: "Partnerwork",
                 moves: [
-                    { name: "Underhanded Curfew (Back Slide)", semi: false, date: '2026-01-03T12:00:00' },
-                    { name: "Underhanded Curfew (Hammerlocks)", semi: false, date: '2026-01-08T12:00:00' },
-                    { name: "Shoulder Lunge Broken Left Curfew (Switch)", semi: false, date: '2026-01-13T12:00:00' },
-                    { name: "Shoulder Lunge Broken Left Curfew (Same)", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Figure-8,Right,(WAL Back Slide),Curfews,Broken Left", semi: false, date: '2026-01-03T12:00:00' },
+                    { name: "Figure-8,Catwalk,HL,HL+CBL,CBL,Curfews,Broken Left", semi: false, date: '2026-01-08T12:00:00' },
+                    { name: "CBL (Shoulder),Lunge (Shoulder Switch),Broken Left (Shoulder),WAL Check,Curfew,Waist CBL", semi: false, date: '2026-01-13T12:00:00' },
+                    { name: "CBL (Shoulder),Lunge (Shoulder Same),Broken Left (Shoulder),WAL Check,Curfew,R Waist CBL", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "CBL (Arm Slide),Foosball,Side Charge,Catwalk HL,Booty-Roll,HL", semi: false, date: '2026-01-20T12:00:00' },
                 ]
             }
         ]
