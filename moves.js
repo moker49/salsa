@@ -126,7 +126,7 @@ const moveGroups = [
             },
 
             {
-                name: "Partner Work",
+                name: "Partnerwork",
                 moves: [
                     { name: "Broken Left (1 detach)", semi: false, date: '2025-11-25T12:00:00' },
                     { name: "Broken Left (1A detatch WAL)", semi: false, date: '2025-11-25T12:00:00' },
@@ -167,10 +167,13 @@ const moveGroups = [
                     { name: "Syncopated Hot Toe", semi: false, date: '2026-01-08T12:00:00' },
                     { name: "Descending Trap Turn", semi: false, date: '2026-01-10T12:00:00' },
                     { name: "Angle Slave Freeze", semi: true, date: '2026-01-13T12:00:00' },
-                    { name: "Reverse Crossover Slide,Turn Combo Left", semi: false, date: '2026-01-15T12:00:00' },
                     { name: "Agua,Double Left Flare,585 Spiral,Cross Tap Lunge,Front Double Double,Descending Trap Turn,Broken Left Turn (Pencil),Angle Slave Freeze", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Reverse Crossover Slide", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Turn Combo Left", semi: false, date: '2026-01-15T12:00:00' },
+                    { name: "Reverse Crossover Slide,Turn Combo Left", semi: false, date: '2026-01-15T12:00:00' },
                     { name: "Reverse Crossover Tap Suzzy,(aka Look Back At It)", semi: false, date: '2026-01-20T12:00:00' },
                     { name: "Mayday", semi: false, date: '2026-01-20T12:00:00' },
+                    { name: "Reverse Crossover Tap Suzzy,Mayday", semi: false, date: '2026-01-20T12:00:00' },
                 ]
             },
 
